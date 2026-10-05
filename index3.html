@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Logic Gate Simulator</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0b1220;
+    color: white;
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 25px auto;
+}
+
+h1 {
+    text-align: center;
+    color: #4da3ff;
+}
+
+.subtitle {
+    text-align: center;
+    color: #8899aa;
+    margin-bottom: 20px;
+}
+
+.toolbar {
+    background: #141f33;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.toolbar button {
+    padding: 10px 18px;
+    margin: 4px;
+    border: 1px solid #40516e;
+    background: #1c2940;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.toolbar button:hover {
+    background: #2869b2;
+}
+
+.toolbar button.active {
+    background: #287ee8;
+}
+
+.workspace {
+    position: relative;
+    height: 560px;
+    background-color: #0e1829;
+    border: 1px solid #2b3d59;
+    border-radius: 12px;
+
+    background-image:
+        linear-gradient(#17243a 1px, transparent 1px),
+        linear-gradient(90deg, #17243a 1px, transparent 1px);
+
+    background-size: 25px 25px;
+    overflow: hidden;
+}
+
+/* INPUT BOXES */
+
+.input {
+    position: absolute;
+    width: 120px;
+    background: #17243a;
+    border: 1px solid #40516e;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    z-index: 5;
+}
+
+.inputA {
+    left: 30px;
+    top: 130px;
+}
+
+.inputB {
+    left: 30px;
+    top: 350px;
+}
+
+.inputTitle {
+    color: #9baac0;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.switch {
+    width: 100%;
+    padding: 9px;
+    background: #26344d;
+    border: 1px solid #536681;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.switch.on {
+    background: #087f55;
+    border-color: #22e6a3;
+    color: white;
+}
+
+/* WIRES */
+
+.wire {
+    position: absolute;
+    height: 5px;
+    background: #45546c;
+    z-index: 2;
+    border-radius: 5px;
+}
+
+.wire.on {
+    background: #20e3a2;
+    box-shadow: 0 0 12px #20e3a2;
+}
+
+.wireA {
+    left: 165px;
+    top: 180px;
+    width: 25%;
+}
+
+.wireB {
+    left: 165px;
+    top: 400px;
+    width: 25%;
+}
+
+.wireOut {
+    left: 63%;
+    top: 290px;
+    width: 22%;
+}
+
+/* GATE */
+
+.gate {
+    position: absolute;
+    left: 43%;
+    top: 210px;
+    width: 180px;
+    height: 150px;
+    z-index: 4;
+}
+
+.gate svg {
+    width: 180px;
+    height: 150px;
+}
+
+.gateBody {
+    fill: #1c2a42;
+    stroke: #7890b0;
+    stroke-width: 3;
+}
+
+.gate.on .gateBody {
+    stroke: #20e3a2;
+    filter: drop-shadow(0 0 8px #20e3a2);
+}
+
+.gateText {
+    position: absolute;
+    top: 66px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* OUTPUT */
+
+.output {
+    position: absolute;
+    right: 30px;
+    top: 235px;
+    width: 110px;
+    background: #17243a;
+    border: 1px solid #40516e;
+    border-radius: 8px;
+    text-align: center;
+    padding: 14px;
+    z-index: 5;
+}
+
+.outputTitle {
+    color: #9baac0;
+    font-size: 12px;
+}
+
+.outputValue {
+    font-size: 36px;
+    font-weight: bold;
+    color: #ff5268;
+    margin-top: 5px;
+}
+
+.outputValue.on {
+    color: #20e3a2;
+    text-shadow: 0 0 15px #20e3a2;
+}
+
+/* INFORMATION */
+
+.info {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 15px;
+}
+
+.card {
+    background: #141f33;
+    border: 1px solid #2b3d59;
+    border-radius: 10px;
+    padding: 18px;
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #4da3ff;
+}
+
+.value {
+    font-size: 20px;
+    color: #20e3a2;
+}
+
+/* TABLE */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 1px solid #33445e;
+    text-align: center;
+}
+
+th {
+    color: #4da3ff;
+}
+
+.current {
+    background: #203b61;
+}
+
+.high {
+    color: #20e3a2;
+    font-weight: bold;
+}
+
+.low {
+    color: #8794a8;
+}
+
+.reset {
+    background: #d64052 !important;
+}
+
+@media(max-width: 800px) {
+
+    .workspace {
+        height: 600px;
+    }
+
+    .gate {
+        left: 35%;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>LOGIC GATE SIMULATOR</h1>
+
+<div class="subtitle">
+Interactive Digital Logic Circuit
+</div>
+
+<div class="toolbar">
+
+<button class="gateButton active" onclick="selectGate('AND',this)">
+AND
+</button>
+
+<button class="gateButton" onclick="selectGate('OR',this)">
+OR
+</button>
+
+<button class="gateButton" onclick="selectGate('NOT',this)">
+NOT
+</button>
+
+<button class="gateButton" onclick="selectGate('NAND',this)">
+NAND
+</button>
+
+<button class="gateButton" onclick="selectGate('NOR',this)">
+NOR
+</button>
+
+<button class="gateButton" onclick="selectGate('XOR',this)">
+XOR
+</button>
+
+<button class="gateButton" onclick="selectGate('XNOR',this)">
+XNOR
+</button>
+
+<button class="reset" onclick="resetCircuit()">
+RESET
+</button>
+
+</div>
+
+
+<!-- CIRCUIT -->
+
+<div class="workspace">
+
+<!-- INPUT A -->
+
+<div class="input inputA">
+
+<div class="inputTitle">
+INPUT A
+</div>
+
+<button id="buttonA"
+class="switch"
+onclick="toggleA()">
+OFF - 0
+</button>
+
+</div>
+
+
+<!-- INPUT B -->
+
+<div class="input inputB" id="inputBBox">
+
+<div class="inputTitle">
+INPUT B
+</div>
+
+<button id="buttonB"
+class="switch"
+onclick="toggleB()">
+OFF - 0
+</button>
+
+</div>
+
+
+<!-- WIRES -->
+
+<div id="wireA" class="wire wireA"></div>
+
+<div id="wireB" class="wire wireB"></div>
+
+<div id="wireOut" class="wire wireOut"></div>
+
+
+<!-- GATE -->
+
+<div class="gate" id="gate">
+
+<svg viewBox="0 0 180 150">
+
+<path
+id="gateShape"
+class="gateBody"
+d="M25 25 L70 25 C130 25 150 50 150 75 C150 100 130 125 70 125 L25 125 Z">
+</path>
+
+<circle
+id="bubble"
+cx="158"
+cy="75"
+r="8"
+fill="#1c2a42"
+stroke="#7890b0"
+stroke-width="3"
+style="display:none">
+</circle>
+
+</svg>
+
+<div class="gateText" id="gateText">
+AND
+</div>
+
+</div>
+
+
+<!-- OUTPUT -->
+
+<div class="output">
+
+<div class="outputTitle">
+OUTPUT
+</div>
+
+<div id="output"
+class="outputValue">
+0
+</div>
+
+</div>
+
+</div>
+
+
+<!-- INFORMATION -->
+
+<div class="info">
+
+<div class="card">
+
+<h3>Gate</h3>
+
+<div id="gateInfo" class="value">
+AND
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Expression</h3>
+
+<div id="expression" class="value">
+A AND B
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>State</h3>
+
+<div id="state" class="value">
+LOW
+</div>
+
+</div>
+
+</div>
+
+
+<!-- TRUTH TABLE -->
+
+<div class="card" style="margin-top:15px">
+
+<h3>Truth Table</h3>
+
+<table>
+
+<thead>
+
+<tr>
+<th>A</th>
+<th>B</th>
+<th>OUTPUT</th>
+</tr>
+
+</thead>
+
+<tbody id="truthTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* VARIABLES */
+
+var gate = "AND";
+
+var A = 0;
+
+var B = 0;
+
+
+/* GATE SELECT */
+
+function selectGate(newGate, button) {
+
+    gate = newGate;
+
+    var buttons =
+        document.getElementsByClassName("gateButton");
+
+    for(var i = 0; i < buttons.length; i++) {
+
+        buttons[i].className =
+            "gateButton";
+
+    }
+
+    button.className =
+        "gateButton active";
+
+    updateGateShape();
+
+    update();
+
+}
+
+
+/* INPUT A */
+
+function toggleA() {
+
+    if(A == 0) {
+
+        A = 1;
+
+    } else {
+
+        A = 0;
+
+    }
+
+    update();
+
+}
+
+
+/* INPUT B */
+
+function toggleB() {
+
+    if(B == 0) {
+
+        B = 1;
+
+    } else {
+
+        B = 0;
+
+    }
+
+    update();
+
+}
+
+
+/* LOGIC CALCULATION */
+
+function calculate(a,b) {
+
+    if(gate == "AND") {
+
+        return (a == 1 && b == 1) ? 1 : 0;
+
+    }
+
+    if(gate == "OR") {
+
+        return (a == 1 || b == 1) ? 1 : 0;
+
+    }
+
+    if(gate == "NOT") {
+
+        return (a == 0) ? 1 : 0;
+
+    }
+
+    if(gate == "NAND") {
+
+        return (a == 1 && b == 1) ? 0 : 1;
+
+    }
+
+    if(gate == "NOR") {
+
+        return (a == 0 && b == 0) ? 1 : 0;
+
+    }
+
+    if(gate == "XOR") {
+
+        return (a != b) ? 1 : 0;
+
+    }
+
+    if(gate == "XNOR") {
+
+        return (a == b) ? 1 : 0;
+
+    }
+
+}
+
+
+/* UPDATE */
+
+function update() {
+
+    var result =
+        calculate(A,B);
+
+
+    /* A BUTTON */
+
+    var buttonA =
+        document.getElementById("buttonA");
+
+    if(A == 1) {
+
+        buttonA.innerHTML = "ON - 1";
+
+        buttonA.className = "switch on";
+
+    } else {
+
+        buttonA.innerHTML = "OFF - 0";
+
+        buttonA.className = "switch";
+
+    }
+
+
+    /* B BUTTON */
+
+    var buttonB =
+        document.getElementById("buttonB");
+
+    if(B == 1) {
+
+        buttonB.innerHTML = "ON - 1";
+
+        buttonB.className = "switch on";
+
+    } else {
+
+        buttonB.innerHTML = "OFF - 0";
+
+        buttonB.className = "switch";
+
+    }
+
+
+    /* HIDE B FOR NOT */
+
+    var boxB =
+        document.getElementById("inputBBox");
+
+    if(gate == "NOT") {
+
+        boxB.style.display = "none";
+
+    } else {
+
+        boxB.style.display = "block";
+
+    }
+
+
+    /* WIRES */
+
+    var wireA =
+        document.getElementById("wireA");
+
+    var wireB =
+        document.getElementById("wireB");
+
+    var wireOut =
+        document.getElementById("wireOut");
+
+
+    wireA.className =
+        A == 1 ? "wire wireA on" : "wire wireA";
+
+
+    if(gate == "NOT") {
+
+        wireB.className =
+            "wire wireB";
+
+    } else {
+
+        wireB.className =
+            B == 1 ? "wire wireB on" : "wire wireB";
+
+    }
+
+
+    wireOut.className =
+        result == 1
+        ? "wire wireOut on"
+        : "wire wireOut";
+
+
+    /* OUTPUT */
+
+    var output =
+        document.getElementById("output");
+
+    output.innerHTML = result;
+
+
+    if(result == 1) {
+
+        output.className =
+            "outputValue on";
+
+    } else {
+
+        output.className =
+            "outputValue";
+
+    }
+
+
+    /* GATE */
+
+    var gateElement =
+        document.getElementById("gate");
+
+    if(result == 1) {
+
+        gateElement.className =
+            "gate on";
+
+    } else {
+
+        gateElement.className =
+            "gate";
+
+    }
+
+
+    /* INFORMATION */
+
+    document.getElementById("gateInfo")
+        .innerHTML = gate;
+
+    document.getElementById("state")
+        .innerHTML =
+        result == 1 ? "HIGH" : "LOW";
+
+
+    if(gate == "AND") {
+
+        document.getElementById("expression")
+            .innerHTML = "A AND B";
+
+    }
+
+    if(gate == "OR") {
+
+        document.getElementById("expression")
+            .innerHTML = "A OR B";
+
+    }
+
+    if(gate == "NOT") {
+
+        document.getElementById("expression")
+            .innerHTML = "NOT A";
+
+    }
+
+    if(gate == "NAND") {
+
+        document.getElementById("expression")
+            .innerHTML = "NOT (A AND B)";
+
+    }
+
+    if(gate == "NOR") {
+
+        document.getElementById("expression")
+            .innerHTML = "NOT (A OR B)";
+
+    }
+
+    if(gate == "XOR") {
+
+        document.getElementById("expression")
+            .innerHTML = "A XOR B";
+
+    }
+
+    if(gate == "XNOR") {
+
+        document.getElementById("expression")
+            .innerHTML = "A XNOR B";
+
+    }
+
+
+    makeTruthTable();
+
+}
+
+
+/* GATE SHAPE */
+
+function updateGateShape() {
+
+    var shape =
+        document.getElementById("gateShape");
+
+    var bubble =
+        document.getElementById("bubble");
+
+
+    bubble.style.display = "none";
+
+
+    /* AND / NAND */
+
+    if(gate == "AND" || gate == "NAND") {
+
+        shape.setAttribute(
+            "d",
+            "M25 25 L70 25 C130 25 150 50 150 75 C150 100 130 125 70 125 L25 125 Z"
+        );
+
+    }
+
+
+    /* OR / NOR / XOR / XNOR */
+
+    if(
+        gate == "OR" ||
+        gate == "NOR" ||
+        gate == "XOR" ||
+        gate == "XNOR"
+    ) {
+
+        shape.setAttribute(
+            "d",
+            "M25 25 Q85 35 150 75 Q85 115 25 125 Q55 75 25 25 Z"
+        );
+
+    }
+
+
+    /* NOT */
+
+    if(gate == "NOT") {
+
+        shape.setAttribute(
+            "d",
+            "M25 25 L25 125 L145 75 Z"
+        );
+
+    }
+
+
+    /* INVERSION */
+
+    if(
+        gate == "NOT" ||
+        gate == "NAND" ||
+        gate == "NOR" ||
+        gate == "XNOR"
+    ) {
+
+        bubble.style.display = "block";
+
+    }
+
+
+    document.getElementById("gateText")
+        .innerHTML = gate;
+
+}
+
+
+/* TRUTH TABLE */
+
+function makeTruthTable() {
+
+    var table =
+        document.getElementById("truthTable");
+
+    table.innerHTML = "";
+
+
+    var combinations;
+
+
+    if(gate == "NOT") {
+
+        combinations = [
+            [0, "-"],
+            [1, "-"]
+        ];
+
+    } else {
+
+        combinations = [
+            [0,0],
+            [0,1],
+            [1,0],
+            [1,1]
+        ];
+
+    }
+
+
+    for(var i = 0; i < combinations.length; i++) {
+
+        var a =
+            combinations[i][0];
+
+        var b =
+            combinations[i][1];
+
+        var result;
+
+
+        if(gate == "NOT") {
+
+            result =
+                calculate(a,0);
+
+        } else {
+
+            result =
+                calculate(a,b);
+
+        }
+
+
+        var row =
+            document.createElement("tr");
+
+
+        if(
+            A == a &&
+            (
+                gate == "NOT" ||
+                B == b
+            )
+        ) {
+
+            row.className = "current";
+
+        }
+
+
+        row.innerHTML =
+            "<td>" + a + "</td>" +
+            "<td>" + b + "</td>" +
+            "<td>" + result + "</td>";
+
+
+        table.appendChild(row);
+
+    }
+
+}
+
+
+/* RESET */
+
+function resetCircuit() {
+
+    A = 0;
+
+    B = 0;
+
+    update();
+
+}
+
+
+/* START */
+
+updateGateShape();
+
+update();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ABTECH - Welcome</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fc;
+            color: #222;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: #0b1f3a;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #4da3ff;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #4da3ff;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 500px;
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0b1f3a,
+                    #1357a6,
+                    #087f8c
+                );
+
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin: 0 0 20px;
+        }
+
+        .hero h1 span {
+            color: #53e0ff;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.7;
+            color: #e2efff;
+        }
+
+        .hero-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 14px 28px;
+            background: white;
+            color: #1357a6;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            background: #53e0ff;
+            color: #08203b;
+        }
+
+        /* ABOUT */
+
+        .about {
+            padding: 70px 20px;
+            text-align: center;
+            background: white;
+        }
+
+        .section-title {
+            color: #1357a6;
+            font-size: 34px;
+            margin-bottom: 12px;
+        }
+
+        .line {
+            width: 70px;
+            height: 4px;
+            background: #19a7ce;
+            margin: 0 auto 25px;
+            border-radius: 10px;
+        }
+
+        .about-text {
+            max-width: 800px;
+            margin: auto;
+            color: #606b7a;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* EMPLOYEES */
+
+        .team {
+            padding: 70px 20px;
+            background: #f4f7fc;
+            text-align: center;
+        }
+
+        .team-container {
+            max-width: 1000px;
+            margin: 40px auto 0;
+
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .employee {
+            width: 270px;
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+
+            box-shadow:
+                0 8px 25px rgba(20,50,90,0.10);
+
+            transition: 0.3s;
+        }
+
+        .employee:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 15px 35px rgba(20,50,90,0.18);
+        }
+
+        .employee-icon {
+            width: 70px;
+            height: 70px;
+            margin: auto;
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(
+                135deg,
+                #1357a6,
+                #19a7ce
+            );
+
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .employee h3 {
+            margin: 18px 0 8px;
+            color: #17365d;
+        }
+
+        .employee .role {
+            color: #1687b0;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .employee p {
+            color: #77808e;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* VALUES */
+
+        .values {
+            padding: 65px 20px;
+            text-align: center;
+            background: #0b1f3a;
+            color: white;
+        }
+
+        .values .section-title {
+            color: white;
+        }
+
+        .value-container {
+            max-width: 900px;
+            margin: 35px auto 0;
+
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .value {
+            width: 250px;
+            padding: 25px;
+            background: #132e50;
+            border: 1px solid #29486c;
+            border-radius: 12px;
+        }
+
+        .value h3 {
+            color: #53e0ff;
+        }
+
+        .value p {
+            color: #bdcce0;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #061426;
+            color: #8295ad;
+            text-align: center;
+            padding: 22px;
+            font-size: 14px;
+        }
+
+        footer strong {
+            color: #53e0ff;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-links a {
+                margin: 0 8px;
+            }
+
+            .hero {
+                min-height: 450px;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            ABTECH
+        </div>
+
+        <div class="nav-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#about">About Us</a>
+
+            <a href="#team">Team</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- HERO SECTION -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>
+                Welcome to <span>ABTECH</span>
+            </h1>
+
+            <p>
+                Welcome to our website. ABTECH is a technology-focused
+                company that believes in innovation, creativity and
+                building useful solutions through modern technology.
+            </p>
+
+            <a href="#about" class="hero-button">
+                Discover ABTECH
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT US -->
+
+    <section class="about" id="about">
+
+        <h2 class="section-title">
+            About Us
+        </h2>
+
+        <div class="line"></div>
+
+        <p class="about-text">
+
+            ABTECH is an innovative technology company focused on
+            creating simple, practical and modern technology solutions.
+            Our vision is to encourage creativity, technical learning
+            and innovation while developing projects that can make a
+            positive difference.
+
+            <br><br>
+
+            We believe that great technology starts with great ideas.
+            Our team combines knowledge, creativity and teamwork to
+            explore new concepts and turn ideas into useful projects.
+            ABTECH aims to continuously learn, improve and grow with
+            the changing world of technology.
+
+        </p>
+
+    </section>
+
+
+    <!-- TEAM -->
+
+    <section class="team" id="team">
+
+        <h2 class="section-title">
+            Our Team
+        </h2>
+
+        <div class="line"></div>
+
+        <div class="team-container">
+
+
+            <!-- CEO -->
+
+            <div class="employee">
+
+                <div class="employee-icon">
+                    AB
+                </div>
+
+                <h3>
+                    Aadesh Bhopale
+                </h3>
+
+                <div class="role">
+                    CEO
+                </div>
+
+                <p>
+                    Leading ABTECH with vision, creativity and
+                    dedication toward innovation and growth.
+                </p>
+
+            </div>
+
+
+            <!-- ENGINEER -->
+
+            <div class="employee">
+
+                <div class="employee-icon">
+                    HR
+                </div>
+
+                <h3>
+                    Er. Harsh Rathod
+                </h3>
+
+                <div class="role">
+                    Engineer
+                </div>
+
+                <p>
+                    Supporting technical development and engineering
+                    solutions with a focus on practical innovation.
+                </p>
+
+            </div>
+
+
+            <!-- TECHNOLOGY -->
+
+            <div class="employee">
+
+                <div class="employee-icon">
+                    OV
+                </div>
+
+                <h3>
+                    Dr. Omkar Vidhate
+                </h3>
+
+                <div class="role">
+                    Technology & Research
+                </div>
+
+                <p>
+                    Contributing knowledge, research and technical
+                    ideas to help develop innovative projects.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- COMPANY VALUES -->
+
+    <section class="values">
+
+        <h2 class="section-title">
+            What We Believe
+        </h2>
+
+        <div class="line"></div>
+
+        <div class="value-container">
+
+
+            <div class="value">
+
+                <h3>
+                    Innovation
+                </h3>
+
+                <p>
+                    We explore new ideas and technologies to create
+                    better solutions.
+                </p>
+
+            </div>
+
+
+            <div class="value">
+
+                <h3>
+                    Teamwork
+                </h3>
+
+                <p>
+                    We believe collaboration and shared knowledge
+                    lead to better results.
+                </p>
+
+            </div>
+
+
+            <div class="value">
+
+                <h3>
+                    Excellence
+                </h3>
+
+                <p>
+                    We continuously learn and improve our work to
+                    achieve high-quality results.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <strong>ABTECH</strong>
+        &nbsp; | &nbsp;
+        Technology • Innovation • Future
+
+        <br><br>
+
+        ABTECH &copy; 2026 - All Rights Reserved
+
+    </footer>
+
+
+</body>
+</html>

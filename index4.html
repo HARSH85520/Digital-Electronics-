@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Binary Calculator - ABTECH</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+
+    background:
+        linear-gradient(135deg, #071426, #0d2b4d, #071426);
+
+    color: white;
+}
+
+/* HEADER */
+
+.header {
+    text-align: center;
+    padding: 35px 20px 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 38px;
+    color: #4db8ff;
+}
+
+.header p {
+    color: #a8b8ca;
+    margin-top: 10px;
+}
+
+/* MAIN CARD */
+
+.container {
+    width: 92%;
+    max-width: 850px;
+    margin: auto;
+    padding-bottom: 40px;
+}
+
+.card {
+    background: rgba(17, 34, 56, 0.95);
+    border: 1px solid #294765;
+    border-radius: 18px;
+    padding: 30px;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.35);
+}
+
+/* OPERATION BUTTONS */
+
+.operations {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.operations button {
+    padding: 12px 30px;
+    border-radius: 8px;
+
+    border: 1px solid #385a7c;
+    background: #182d46;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.operations button:hover {
+    background: #236db1;
+}
+
+.operations button.active {
+    background: #147de2;
+    border-color: #50b4ff;
+}
+
+/* INPUTS */
+
+.input-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-box label {
+    display: block;
+    color: #aebed0;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 15px;
+
+    border-radius: 9px;
+    border: 1px solid #3c5874;
+
+    background: #09182a;
+    color: #55c1ff;
+
+    font-size: 22px;
+    font-family: monospace;
+    font-weight: bold;
+
+    outline: none;
+}
+
+.input-box input:focus {
+    border-color: #28a9ff;
+    box-shadow: 0 0 10px rgba(40,169,255,0.2);
+}
+
+/* CALCULATE BUTTON */
+
+.calculate {
+    width: 100%;
+    margin-top: 25px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 9px;
+
+    background:
+        linear-gradient(135deg, #087ee8, #00a9d9);
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.calculate:hover {
+    background:
+        linear-gradient(135deg, #1595ff, #00c3f0);
+
+    transform: translateY(-1px);
+}
+
+/* RESULT */
+
+.result {
+    margin-top: 30px;
+
+    background: #071522;
+    border: 1px solid #2b526e;
+
+    border-radius: 12px;
+    padding: 25px;
+
+    text-align: center;
+}
+
+.result-title {
+    color: #8ea6bd;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.result-value {
+    margin-top: 12px;
+
+    font-family: monospace;
+    font-size: 38px;
+    font-weight: bold;
+
+    color: #20e3a2;
+
+    word-break: break-all;
+}
+
+/* STEPS */
+
+.steps {
+    margin-top: 25px;
+
+    background: #0b1c2d;
+
+    border-radius: 10px;
+    padding: 20px;
+
+    font-family: monospace;
+    color: #b9cce0;
+
+    white-space: pre-line;
+    text-align: left;
+}
+
+.steps-title {
+    color: #4db8ff;
+    font-family: Arial;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* STATUS */
+
+.status {
+    margin-top: 15px;
+    text-align: center;
+    color: #7f93aa;
+    font-size: 13px;
+}
+
+/* INFO */
+
+.info {
+    margin-top: 20px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.info-box {
+    background: #14283f;
+    border: 1px solid #294765;
+
+    padding: 18px;
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+.info-box h3 {
+    color: #4db8ff;
+    font-size: 14px;
+}
+
+.info-box p {
+    color: #9eb1c6;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* FOOTER */
+
+.footer {
+    text-align: center;
+    padding: 25px;
+
+    color: #71869c;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media(max-width: 650px) {
+
+    .input-area {
+        grid-template-columns: 1fr;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+    }
+
+    .operations {
+        flex-direction: column;
+    }
+
+    .operations button {
+        width: 100%;
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+
+<div class="header">
+
+    <h1>Binary Calculator</h1>
+
+    <p>
+        Binary Addition and Subtraction
+    </p>
+
+</div>
+
+
+<div class="container">
+
+<div class="card">
+
+
+    <!-- OPERATION -->
+
+    <div class="operations">
+
+        <button
+        id="addButton"
+        class="active"
+        onclick="setOperation('add')">
+
+            Binary Addition
+
+        </button>
+
+
+        <button
+        id="subButton"
+        onclick="setOperation('sub')">
+
+            Binary Subtraction
+
+        </button>
+
+    </div>
+
+
+    <!-- INPUTS -->
+
+    <div class="input-area">
+
+
+        <div class="input-box">
+
+            <label for="binaryA">
+                Binary Number A
+            </label>
+
+            <input
+            type="text"
+            id="binaryA"
+            placeholder="Example: 1010"
+            maxlength="32">
+
+        </div>
+
+
+        <div class="input-box">
+
+            <label for="binaryB">
+                Binary Number B
+            </label>
+
+            <input
+            type="text"
+            id="binaryB"
+            placeholder="Example: 0101"
+            maxlength="32">
+
+        </div>
+
+
+    </div>
+
+
+    <!-- CALCULATE -->
+
+    <button
+    class="calculate"
+    onclick="calculateBinary()">
+
+        Calculate
+
+    </button>
+
+
+    <!-- RESULT -->
+
+    <div class="result">
+
+        <div class="result-title">
+            Binary Result
+        </div>
+
+        <div
+        id="result"
+        class="result-value">
+
+            0
+
+        </div>
+
+    </div>
+
+
+    <!-- STEPS -->
+
+    <div
+    id="steps"
+    class="steps">
+
+        <div class="steps-title">
+            Calculation Steps
+        </div>
+
+        Enter two binary numbers and click Calculate.
+
+    </div>
+
+
+    <div
+    id="status"
+    class="status">
+
+        Ready
+
+    </div>
+
+
+    <!-- INFORMATION -->
+
+    <div class="info">
+
+
+        <div class="info-box">
+
+            <h3>Binary</h3>
+
+            <p>
+                Binary numbers use only
+                0 and 1.
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <h3>Addition</h3>
+
+            <p>
+                0 + 0 = 0<br>
+                0 + 1 = 1<br>
+                1 + 1 = 10
+            </p>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <h3>Subtraction</h3>
+
+            <p>
+                0 - 0 = 0<br>
+                1 - 0 = 1<br>
+                1 - 1 = 0
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</div>
+
+
+<div class="footer">
+
+    ABTECH - Digital Logic Project
+
+</div>
+
+
+<script>
+
+/* CURRENT OPERATION */
+
+var operation = "add";
+
+
+/* CHANGE OPERATION */
+
+function setOperation(type) {
+
+    operation = type;
+
+    var addButton =
+        document.getElementById("addButton");
+
+    var subButton =
+        document.getElementById("subButton");
+
+
+    if(type == "add") {
+
+        addButton.className = "active";
+        subButton.className = "";
+
+    } else {
+
+        addButton.className = "";
+        subButton.className = "active";
+
+    }
+
+}
+
+
+/* CHECK BINARY */
+
+function isBinary(value) {
+
+    if(value == "") {
+        return false;
+    }
+
+    for(var i = 0; i < value.length; i++) {
+
+        if(
+            value.charAt(i) != "0" &&
+            value.charAt(i) != "1"
+        ) {
+
+            return false;
+
+        }
+
+    }
+
+    return true;
+
+}
+
+
+/* REMOVE LEADING ZERO */
+
+function removeZeros(value) {
+
+    value = value.replace(/^0+/, "");
+
+    if(value == "") {
+        return "0";
+    }
+
+    return value;
+
+}
+
+
+/* BINARY ADDITION */
+
+function binaryAddition(a,b) {
+
+    var i = a.length - 1;
+    var j = b.length - 1;
+
+    var carry = 0;
+
+    var answer = "";
+
+    var steps = "";
+
+    var position = 1;
+
+
+    while(i >= 0 || j >= 0 || carry > 0) {
+
+        var bitA =
+            i >= 0 ? parseInt(a.charAt(i)) : 0;
+
+        var bitB =
+            j >= 0 ? parseInt(b.charAt(j)) : 0;
+
+
+        var sum =
+            bitA + bitB + carry;
+
+
+        var resultBit =
+            sum % 2;
+
+
+        var newCarry =
+            Math.floor(sum / 2);
+
+
+        steps +=
+            "Position " + position +
+            ": " +
+            bitA +
+            " + " +
+            bitB +
+            " + carry " +
+            carry +
+            " = " +
+            sum +
+            " -> result " +
+            resultBit +
+            ", carry " +
+            newCarry +
+            "\n";
+
+
+        answer =
+            resultBit + answer;
+
+
+        carry = newCarry;
+
+        i--;
+        j--;
+
+        position++;
+
+    }
+
+
+    return {
+        answer: removeZeros(answer),
+        steps: steps
+    };
+
+}
+
+
+/* BINARY SUBTRACTION */
+
+function binarySubtraction(a,b) {
+
+    var maxLength =
+        Math.max(a.length,b.length);
+
+
+    a = a.padStart(maxLength,"0");
+
+    b = b.padStart(maxLength,"0");
+
+
+    var i = maxLength - 1;
+
+    var borrow = 0;
+
+    var answer = "";
+
+    var steps = "";
+
+    var position = 1;
+
+
+    while(i >= 0) {
+
+        var bitA =
+            parseInt(a.charAt(i));
+
+        var bitB =
+            parseInt(b.charAt(i));
+
+
+        var originalA = bitA;
+
+
+        bitA =
+            bitA - borrow;
+
+
+        if(bitA >= bitB) {
+
+            var resultBit =
+                bitA - bitB;
+
+            borrow = 0;
+
+
+        } else {
+
+            var resultBit =
+                bitA + 2 - bitB;
+
+            borrow = 1;
+
+        }
+
+
+        steps +=
+            "Position " +
+            position +
+            ": " +
+            originalA +
+            " - " +
+            bitB +
+            " with borrow " +
+            (bitA < bitB ? "1" : "0") +
+            " -> result " +
+            resultBit +
+            "\n";
+
+
+        answer =
+            resultBit + answer;
+
+
+        i--;
+
+        position++;
+
+    }
+
+
+    return {
+        answer: removeZeros(answer),
+        steps: steps
+    };
+
+}
+
+
+/* MAIN CALCULATION */
+
+function calculateBinary() {
+
+    var a =
+        document.getElementById("binaryA")
+        .value.trim();
+
+
+    var b =
+        document.getElementById("binaryB")
+        .value.trim();
+
+
+    var result =
+        document.getElementById("result");
+
+
+    var steps =
+        document.getElementById("steps");
+
+
+    var status =
+        document.getElementById("status");
+
+
+    /* VALIDATION */
+
+    if(!isBinary(a)) {
+
+        result.innerHTML = "ERROR";
+
+        status.innerHTML =
+            "Binary A must contain only 0 and 1.";
+
+        return;
+
+    }
+
+
+    if(!isBinary(b)) {
+
+        result.innerHTML = "ERROR";
+
+        status.innerHTML =
+            "Binary B must contain only 0 and 1.";
+
+        return;
+
+    }
+
+
+    /* NORMALIZE */
+
+    a = removeZeros(a);
+
+    b = removeZeros(b);
+
+
+    /* ADDITION */
+
+    if(operation == "add") {
+
+        var calculation =
+            binaryAddition(a,b);
+
+
+        result.innerHTML =
+            calculation.answer;
+
+
+        steps.innerHTML =
+            "<div class='steps-title'>Addition Steps</div>" +
+            "A = " + a +
+            "\nB = " + b +
+            "\n\n" +
+            calculation.steps;
+
+
+        status.innerHTML =
+            "Binary addition completed successfully.";
+
+    }
+
+
+    /* SUBTRACTION */
+
+    else {
+
+        /*
+        Convert binary to decimal only for
+        checking which number is larger.
+        The actual subtraction below is
+        performed using binary borrow logic.
+        */
+
+        var decimalA =
+            parseInt(a,2);
+
+        var decimalB =
+            parseInt(b,2);
+
+
+        if(decimalA < decimalB) {
+
+            result.innerHTML =
+                "NEGATIVE";
+
+
+            steps.innerHTML =
+                "<div class='steps-title'>Subtraction</div>" +
+                "A = " + a +
+                "\nB = " + b +
+                "\n\n" +
+                "A is smaller than B.\n" +
+                "Result = -(B - A)";
+
+
+            status.innerHTML =
+                "Negative binary result.";
+
+            return;
+
+        }
+
+
+        var calculation =
+            binarySubtraction(a,b);
+
+
+        result.innerHTML =
+            calculation.answer;
+
+
+        steps.innerHTML =
+            "<div class='steps-title'>Subtraction Steps</div>" +
+            "A = " + a +
+            "\nB = " + b +
+            "\n\n" +
+            calculation.steps;
+
+
+        status.innerHTML =
+            "Binary subtraction completed successfully.";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

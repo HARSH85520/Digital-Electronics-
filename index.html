@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Logic Gate Project</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at top left, #163c67, transparent 40%),
+        radial-gradient(circle at bottom right, #163b54, transparent 40%),
+        linear-gradient(135deg, #050d18, #0c1d31, #050d18);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow-x: hidden;
+}
+
+/* MAIN CARD */
+
+.container {
+    width: 92%;
+    max-width: 520px;
+
+    background: rgba(255,255,255,0.07);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    border-radius: 24px;
+
+    padding: 38px;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.55);
+
+    backdrop-filter: blur(15px);
+}
+
+/* LOGO */
+
+.logo {
+    width: 70px;
+    height: 70px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(135deg, #2878ff, #00c896);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+    font-size: 25px;
+    font-weight: bold;
+
+    box-shadow:
+        0 10px 30px rgba(0,150,255,0.3);
+}
+
+/* TITLE */
+
+h1 {
+    color: white;
+
+    margin: 0 0 10px;
+
+    font-size: 32px;
+
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    color: #a9b8cc;
+
+    margin-bottom: 28px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+/* IMAGE */
+
+.image-box {
+    background: rgba(255,255,255,0.95);
+
+    padding: 10px;
+
+    border-radius: 17px;
+
+    display: inline-block;
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,0.4);
+
+    margin-bottom: 30px;
+
+    transition: 0.3s;
+}
+
+.image-box:hover {
+    transform: scale(1.03);
+
+    box-shadow:
+        0 15px 40px rgba(40,140,255,0.25);
+}
+
+.image-box img {
+    width: 240px;
+    height: 180px;
+
+    object-fit: cover;
+
+    display: block;
+
+    border-radius: 11px;
+}
+
+/* BUTTON AREA */
+
+.buttons {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+/* LINKS */
+
+.buttons a {
+    text-decoration: none;
+
+    display: block;
+}
+
+/* ALL BUTTONS */
+
+.buttons button {
+
+    width: 100%;
+
+    padding: 16px 18px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        filter 0.25s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+/* BUTTON SHINE */
+
+.buttons button:before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.18),
+            transparent
+        );
+
+    transition: 0.5s;
+}
+
+.buttons button:hover:before {
+    left: 130%;
+}
+
+/* BUTTON HOVER */
+
+.buttons button:hover {
+
+    transform: translateY(-4px);
+
+    filter: brightness(1.1);
+}
+
+.buttons button:active {
+
+    transform: scale(0.97);
+
+}
+
+
+/* BUTTON 1 - ABOUT */
+
+.buttons a:nth-child(1) button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #2878ff,
+            #5148e5
+        );
+
+    box-shadow:
+        0 8px 22px rgba(40,120,255,0.28);
+}
+
+.buttons a:nth-child(1) button:hover {
+
+    box-shadow:
+        0 14px 32px rgba(40,120,255,0.45);
+}
+
+
+/* BUTTON 2 - LOGIC GATES */
+
+.buttons a:nth-child(2) button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #00a878,
+            #00c896
+        );
+
+    box-shadow:
+        0 8px 22px rgba(0,200,150,0.25);
+}
+
+.buttons a:nth-child(2) button:hover {
+
+    box-shadow:
+        0 14px 32px rgba(0,200,150,0.42);
+}
+
+
+/* BUTTON 3 - BINARY ARITHMETIC */
+
+.buttons a:nth-child(3) button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff8a00,
+            #ff4d4d
+        );
+
+    box-shadow:
+        0 8px 22px rgba(255,120,0,0.28);
+
+    border: 1px solid rgba(255,190,80,0.35);
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+}
+
+.buttons a:nth-child(3) button:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9f1a,
+            #ff5c5c
+        );
+
+    box-shadow:
+        0 15px 35px rgba(255,100,0,0.48);
+
+}
+
+
+/* FOOTER */
+
+.footer {
+
+    margin-top: 27px;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid rgba(255,255,255,0.08);
+
+    color: #71839b;
+
+    font-size: 12px;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* MOBILE */
+
+@media(max-width: 500px) {
+
+    .container {
+
+        width: 94%;
+
+        padding: 28px 20px;
+
+    }
+
+    h1 {
+
+        font-size: 26px;
+
+    }
+
+    .logo {
+
+        width: 60px;
+        height: 60px;
+
+        font-size: 21px;
+
+    }
+
+    .image-box img {
+
+        width: 100%;
+
+        max-width: 240px;
+
+        height: auto;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+        LG
+    </div>
+
+
+    <!-- TITLE -->
+
+    <h1>
+        Logic Gate Project
+    </h1>
+
+
+    <div class="subtitle">
+        Interactive Digital Logic Learning Platform
+    </div>
+
+
+    <!-- IMAGE -->
+
+    <div class="image-box">
+
+        <img
+        src="https://play-lh.googleusercontent.com/_9Qa05OaLaJtJa5Ez7vozpYZRt6hY1ICMYvBH87uqIfqxlBKqX6RrTOcNyMzDr-7mLA=w3840-h2160-rw"
+        height="180"
+        width="240"
+        alt="Logic Gates">
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+
+        <!-- ABOUT US -->
+
+        <a href="index2.html">
+
+            <button>
+                ABOUT US
+            </button>
+
+        </a>
+
+
+        <!-- LOGIC GATES -->
+
+        <a href="index3.html">
+
+            <button>
+                LOGIC GATES
+            </button>
+
+        </a>
+
+
+        <!-- BINARY ARITHMETIC -->
+
+        <a href="index4.html">
+
+            <button>
+                BINARY ARITHMETIC
+            </button>
+
+        </a>
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        Digital Logic Gate Simulator
+
+        <br><br>
+
+        ABTECH Technology Project
+
+    </div>
+
+
+</div>
+
+
+</body>
+</html>
