@@ -27,7 +27,10 @@ body {
     overflow-x: hidden;
 }
 
-/* MAIN CARD */
+
+/* =========================================
+   MAIN CARD
+========================================= */
 
 .container {
     width: 92%;
@@ -47,9 +50,28 @@ body {
         0 25px 70px rgba(0,0,0,0.55);
 
     backdrop-filter: blur(15px);
+
+    animation: containerIn 0.8s ease;
 }
 
-/* LOGO */
+@keyframes containerIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
 
 .logo {
     width: 70px;
@@ -73,9 +95,28 @@ body {
 
     box-shadow:
         0 10px 30px rgba(0,150,255,0.3);
+
+    animation: logoGlow 3s infinite alternate;
 }
 
-/* TITLE */
+@keyframes logoGlow {
+
+    from {
+        box-shadow:
+            0 10px 30px rgba(0,150,255,0.3);
+    }
+
+    to {
+        box-shadow:
+            0 10px 40px rgba(0,220,200,0.55);
+    }
+
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
 
 h1 {
     color: white;
@@ -97,7 +138,10 @@ h1 {
     line-height: 1.5;
 }
 
-/* IMAGE */
+
+/* =========================================
+   IMAGE
+========================================= */
 
 .image-box {
     background: rgba(255,255,255,0.95);
@@ -117,10 +161,10 @@ h1 {
 }
 
 .image-box:hover {
-    transform: scale(1.03);
+    transform: scale(1.04);
 
     box-shadow:
-        0 15px 40px rgba(40,140,255,0.25);
+        0 15px 40px rgba(40,140,255,0.35);
 }
 
 .image-box img {
@@ -134,7 +178,10 @@ h1 {
     border-radius: 11px;
 }
 
-/* BUTTON AREA */
+
+/* =========================================
+   BUTTON AREA
+========================================= */
 
 .buttons {
     display: flex;
@@ -144,25 +191,28 @@ h1 {
     gap: 14px;
 }
 
-/* LINKS */
-
 .buttons a {
     text-decoration: none;
 
     display: block;
 }
 
-/* ALL BUTTONS */
+
+/* =========================================
+   ALL BUTTONS
+========================================= */
 
 .buttons button {
 
     width: 100%;
 
+    min-height: 58px;
+
     padding: 16px 18px;
 
-    border: 1px solid rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.14);
 
-    border-radius: 12px;
+    border-radius: 14px;
 
     color: white;
 
@@ -170,66 +220,115 @@ h1 {
 
     font-weight: bold;
 
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
 
     cursor: pointer;
-
-    transition:
-        transform 0.25s,
-        box-shadow 0.25s,
-        filter 0.25s;
 
     position: relative;
 
     overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 11px;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
 }
 
-/* BUTTON SHINE */
 
-.buttons button:before {
+/* =========================================
+   BUTTON ICON
+========================================= */
+
+.buttons button span {
+
+    font-size: 21px;
+
+    filter:
+        drop-shadow(
+            0 0 6px rgba(255,255,255,0.55)
+        );
+
+    transition:
+        transform 0.3s ease;
+}
+
+.buttons button:hover span {
+
+    transform:
+        scale(1.25)
+        rotate(5deg);
+}
+
+
+/* =========================================
+   BUTTON SHINE
+========================================= */
+
+.buttons button::before {
 
     content: "";
 
     position: absolute;
 
     top: 0;
-    left: -100%;
 
-    width: 70%;
+    left: -120%;
+
+    width: 75%;
+
     height: 100%;
 
     background:
         linear-gradient(
             90deg,
             transparent,
-            rgba(255,255,255,0.18),
+            rgba(255,255,255,0.3),
             transparent
         );
 
-    transition: 0.5s;
+    transform: skewX(-20deg);
+
+    transition:
+        left 0.6s ease;
 }
 
-.buttons button:hover:before {
-    left: 130%;
+.buttons button:hover::before {
+    left: 140%;
 }
 
-/* BUTTON HOVER */
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
 
 .buttons button:hover {
 
-    transform: translateY(-4px);
+    transform:
+        translateY(-5px)
+        scale(1.015);
 
-    filter: brightness(1.1);
+    filter:
+        brightness(1.12);
 }
 
 .buttons button:active {
 
-    transform: scale(0.97);
-
+    transform:
+        scale(0.97);
 }
 
 
-/* BUTTON 1 - ABOUT */
+/* =========================================
+   BUTTON 1 - ABOUT US
+========================================= */
 
 .buttons a:nth-child(1) button {
 
@@ -241,17 +340,21 @@ h1 {
         );
 
     box-shadow:
-        0 8px 22px rgba(40,120,255,0.28);
+        0 8px 24px
+        rgba(40,120,255,0.30);
 }
 
 .buttons a:nth-child(1) button:hover {
 
     box-shadow:
-        0 14px 32px rgba(40,120,255,0.45);
+        0 15px 38px
+        rgba(40,120,255,0.55);
 }
 
 
-/* BUTTON 2 - LOGIC GATES */
+/* =========================================
+   BUTTON 2 - LOGIC GATES
+========================================= */
 
 .buttons a:nth-child(2) button {
 
@@ -259,21 +362,25 @@ h1 {
         linear-gradient(
             135deg,
             #00a878,
-            #00c896
+            #00e0a0
         );
 
     box-shadow:
-        0 8px 22px rgba(0,200,150,0.25);
+        0 8px 24px
+        rgba(0,210,155,0.30);
 }
 
 .buttons a:nth-child(2) button:hover {
 
     box-shadow:
-        0 14px 32px rgba(0,200,150,0.42);
+        0 15px 38px
+        rgba(0,230,170,0.55);
 }
 
 
-/* BUTTON 3 - BINARY ARITHMETIC */
+/* =========================================
+   BUTTON 3 - BINARY ARITHMETIC
+========================================= */
 
 .buttons a:nth-child(3) button {
 
@@ -285,13 +392,11 @@ h1 {
         );
 
     box-shadow:
-        0 8px 22px rgba(255,120,0,0.28);
+        0 8px 24px
+        rgba(255,120,0,0.32);
 
-    border: 1px solid rgba(255,190,80,0.35);
-
-    font-size: 15px;
-
-    letter-spacing: 1px;
+    border:
+        1px solid rgba(255,190,80,0.35);
 }
 
 .buttons a:nth-child(3) button:hover {
@@ -304,12 +409,86 @@ h1 {
         );
 
     box-shadow:
-        0 15px 35px rgba(255,100,0,0.48);
-
+        0 15px 38px
+        rgba(255,100,0,0.55);
 }
 
 
-/* FOOTER */
+/* =========================================
+   BUTTON 4 - COMPLEMENTS
+========================================= */
+
+.buttons a:nth-child(4) button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #8e44ff,
+            #d62cff
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(160,60,255,0.32);
+
+    border:
+        1px solid rgba(210,120,255,0.35);
+}
+
+.buttons a:nth-child(4) button:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #a45cff,
+            #ed3cff
+        );
+
+    box-shadow:
+        0 15px 40px
+        rgba(190,60,255,0.58);
+}
+
+
+/* =========================================
+   BUTTON 5 - ADDERS
+========================================= */
+
+.buttons a:nth-child(5) button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #008cff,
+            #00d9ff
+        );
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,180,255,0.32);
+
+    border:
+        1px solid rgba(80,220,255,0.35);
+}
+
+.buttons a:nth-child(5) button:hover {
+
+    background:
+        linear-gradient(
+            135deg,
+            #00a8ff,
+            #22e4ff
+        );
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,205,255,0.58);
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
 
 .footer {
 
@@ -328,9 +507,15 @@ h1 {
 }
 
 
-/* MOBILE */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media(max-width: 500px) {
+
+    body {
+        padding: 20px 0;
+    }
 
     .container {
 
@@ -362,6 +547,14 @@ h1 {
         max-width: 240px;
 
         height: auto;
+
+    }
+
+    .buttons button {
+
+        min-height: 55px;
+
+        font-size: 14px;
 
     }
 
@@ -419,6 +612,7 @@ h1 {
         <a href="index2.html">
 
             <button>
+                <span>👨‍💻</span>
                 ABOUT US
             </button>
 
@@ -430,6 +624,7 @@ h1 {
         <a href="index3.html">
 
             <button>
+                <span>⚡</span>
                 LOGIC GATES
             </button>
 
@@ -441,7 +636,32 @@ h1 {
         <a href="index4.html">
 
             <button>
+                <span>🔢</span>
                 BINARY ARITHMETIC
+            </button>
+
+        </a>
+
+
+        <!-- COMPLEMENTS -->
+
+        <a href="index5.html">
+
+            <button>
+                <span>🔄</span>
+                COMPLEMENTS
+            </button>
+
+        </a>
+
+
+        <!-- ADDERS -->
+
+        <a href="index6.html">
+
+            <button>
+                <span>➕</span>
+                ADDERS
             </button>
 
         </a>
