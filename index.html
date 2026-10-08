@@ -10,6 +10,7 @@
 
 <title>Logic Gate Project</title>
 
+
 <style>
 
 /* =====================================================
@@ -24,6 +25,33 @@
 
 
 /* =====================================================
+   COLOR SYSTEM
+===================================================== */
+
+:root {
+
+    --cream: #f5f2eb;
+
+    --paper: #fffdf8;
+
+    --charcoal: #1c1d20;
+
+    --muted: #73716c;
+
+    --line: #dedbd3;
+
+    --blue: #315b8c;
+
+    --blue-dark: #24466d;
+
+    --gold: #b28a4b;
+
+    --gold-light: #d5b77b;
+
+}
+
+
+/* =====================================================
    BODY
 ===================================================== */
 
@@ -32,32 +60,25 @@ body {
     min-height: 100vh;
 
     font-family:
-        "Inter",
         "Segoe UI",
         Arial,
         sans-serif;
 
-    color: #ffffff;
+    color: var(--charcoal);
 
     background:
 
         radial-gradient(
-            circle at 15% 15%,
-            rgba(0, 180, 255, 0.13),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 85% 80%,
-            rgba(112, 64, 255, 0.12),
-            transparent 30%
+            circle at 10% 10%,
+            rgba(178,138,75,0.10),
+            transparent 28%
         ),
 
         linear-gradient(
             135deg,
-            #050911 0%,
-            #08111d 50%,
-            #050911 100%
+            #eeeae1,
+            #f7f4ed 45%,
+            #eae7df
         );
 
     display: flex;
@@ -66,60 +87,7 @@ body {
 
     align-items: center;
 
-    padding: 35px 15px;
-
-    overflow-x: hidden;
-
-}
-
-
-/* =====================================================
-   BACKGROUND ORBS
-===================================================== */
-
-body::before {
-
-    content: "";
-
-    position: fixed;
-
-    width: 350px;
-    height: 350px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(0, 174, 255, 0.06);
-
-    filter: blur(80px);
-
-    top: -120px;
-    left: -100px;
-
-    pointer-events: none;
-
-}
-
-body::after {
-
-    content: "";
-
-    position: fixed;
-
-    width: 300px;
-    height: 300px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(125, 70, 255, 0.06);
-
-    filter: blur(80px);
-
-    bottom: -100px;
-    right: -80px;
-
-    pointer-events: none;
+    padding: 40px 20px;
 
 }
 
@@ -132,119 +100,44 @@ body::after {
 
     width: 100%;
 
-    max-width: 560px;
+    max-width: 570px;
 
-    padding: 42px;
+    background: var(--paper);
 
-    position: relative;
+    border: 1px solid
+        rgba(28,29,32,0.08);
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.075),
-            rgba(255,255,255,0.025)
-        );
+    border-radius: 26px;
 
-    border:
-        1px solid rgba(255,255,255,0.11);
-
-    border-radius: 30px;
-
-    backdrop-filter: blur(25px);
-
-    -webkit-backdrop-filter: blur(25px);
+    padding: 44px;
 
     box-shadow:
 
-        0 35px 90px
-        rgba(0,0,0,0.48),
+        0 25px 70px
+        rgba(38,35,29,0.13),
 
-        inset 0 1px 0
-        rgba(255,255,255,0.08);
-
-    animation:
-        cardAppear 0.8s ease;
-
-}
-
-
-@keyframes cardAppear {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(25px)
-            scale(0.97);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
+        0 3px 10px
+        rgba(38,35,29,0.05);
 
 }
 
 
 /* =====================================================
-   TOP LABEL
+   HEADER
 ===================================================== */
 
-.top-label {
+.header {
 
-    display: inline-flex;
+    display: grid;
+
+    grid-template-columns:
+        64px 1fr;
 
     align-items: center;
 
-    gap: 8px;
+    gap: 18px;
 
-    padding:
-        7px 12px;
-
-    margin-bottom: 22px;
-
-    border-radius: 50px;
-
-    background:
-        rgba(0, 190, 255, 0.07);
-
-    border:
-        1px solid rgba(0, 190, 255, 0.16);
-
-    color:
-        #72dfff;
-
-    font-size: 11px;
-
-    font-weight: 600;
-
-    letter-spacing: 1.5px;
-
-    text-transform: uppercase;
-
-}
-
-
-/* STATUS DOT */
-
-.status-dot {
-
-    width: 6px;
-    height: 6px;
-
-    border-radius: 50%;
-
-    background: #35e8bd;
-
-    box-shadow:
-        0 0 10px #35e8bd;
+    margin-bottom: 32px;
 
 }
 
@@ -255,39 +148,52 @@ body::after {
 
 .logo {
 
-    width: 76px;
-    height: 76px;
+    width: 64px;
 
-    margin-bottom: 22px;
+    height: 64px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    border-radius: 22px;
+    border-radius: 17px;
 
-    background:
+    background: var(--charcoal);
 
-        linear-gradient(
-            145deg,
-            rgba(30,190,255,0.95),
-            rgba(75,90,255,0.9)
-        );
+    color: white;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
 
     box-shadow:
+        0 8px 18px
+        rgba(28,29,32,0.15);
 
-        0 12px 35px
-        rgba(0,150,255,0.25),
+}
 
-        inset 0 1px 1px
-        rgba(255,255,255,0.35);
 
-    font-size: 25px;
+/* =====================================================
+   SMALL LABEL
+===================================================== */
 
-    font-weight: 800;
+.kicker {
 
-    letter-spacing: -1px;
+    color: var(--gold);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 7px;
 
 }
 
@@ -298,26 +204,20 @@ body::after {
 
 h1 {
 
-    font-size: 36px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-    line-height: 1.15;
+    font-size: 34px;
 
-    letter-spacing: -1.2px;
+    line-height: 1.1;
 
-    margin-bottom: 12px;
+    font-weight: 600;
 
-    background:
+    color: var(--charcoal);
 
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #a8dfff
-        );
-
-    -webkit-background-clip: text;
-
-    -webkit-text-fill-color:
-        transparent;
+    letter-spacing: -0.6px;
 
 }
 
@@ -328,15 +228,15 @@ h1 {
 
 .subtitle {
 
-    color: #8e9daf;
+    color: var(--muted);
 
     font-size: 14px;
 
     line-height: 1.7;
 
-    max-width: 430px;
-
     margin-bottom: 28px;
+
+    max-width: 460px;
 
 }
 
@@ -349,23 +249,18 @@ h1 {
 
     width: 100%;
 
-    padding: 7px;
+    height: 205px;
 
-    margin-bottom: 30px;
+    margin-bottom: 32px;
 
-    border-radius: 20px;
-
-    background:
-        rgba(255,255,255,0.045);
-
-    border:
-        1px solid rgba(255,255,255,0.08);
-
-    box-shadow:
-        0 18px 45px
-        rgba(0,0,0,0.25);
+    border-radius: 18px;
 
     overflow: hidden;
+
+    background: #e9e6df;
+
+    border: 1px solid
+        var(--line);
 
 }
 
@@ -374,74 +269,68 @@ h1 {
 
     width: 100%;
 
-    height: 210px;
-
-    object-fit: cover;
+    height: 100%;
 
     display: block;
 
-    border-radius: 15px;
-
-    opacity: 0.92;
+    object-fit: cover;
 
     transition:
-        transform 0.6s ease,
-        opacity 0.4s ease;
+        transform 0.5s ease;
 
 }
 
 
 .image-box:hover img {
 
-    transform: scale(1.035);
-
-    opacity: 1;
+    transform: scale(1.025);
 
 }
 
 
 /* =====================================================
-   SECTION LABEL
+   NAVIGATION HEADER
 ===================================================== */
 
-.section-label {
+.navigation-heading {
 
     display: flex;
 
     align-items: center;
 
-    gap: 10px;
+    justify-content: space-between;
 
-    margin-bottom: 13px;
+    margin-bottom: 12px;
 
-    color: #66768b;
+}
 
-    font-size: 10px;
+
+.navigation-heading span:first-child {
+
+    color: var(--charcoal);
+
+    font-size: 12px;
 
     font-weight: 700;
 
-    letter-spacing: 2px;
+    letter-spacing: 1.3px;
 
     text-transform: uppercase;
 
 }
 
-.section-label::after {
 
-    content: "";
+.navigation-heading span:last-child {
 
-    height: 1px;
+    color: #aaa69e;
 
-    flex: 1;
-
-    background:
-        rgba(255,255,255,0.07);
+    font-size: 11px;
 
 }
 
 
 /* =====================================================
-   NAVIGATION
+   BUTTON LIST
 ===================================================== */
 
 .buttons {
@@ -450,13 +339,13 @@ h1 {
 
     flex-direction: column;
 
-    gap: 10px;
+    gap: 9px;
 
 }
 
 
 /* =====================================================
-   LINK
+   BUTTON LINK
 ===================================================== */
 
 .buttons a {
@@ -469,214 +358,221 @@ h1 {
 
 
 /* =====================================================
-   PREMIUM BUTTON
+   PREMIUM NAVIGATION BUTTON
 ===================================================== */
 
 .buttons button {
 
     width: 100%;
 
-    height: 62px;
+    height: 64px;
 
-    padding: 0 17px;
+    border: 1px solid
+        var(--line);
 
-    display: flex;
+    border-radius: 13px;
+
+    background: #ffffff;
+
+    color: var(--charcoal);
+
+    display: grid;
+
+    grid-template-columns:
+        42px 1fr 30px;
 
     align-items: center;
 
-    gap: 14px;
+    gap: 13px;
 
-    position: relative;
+    padding: 0 16px;
 
-    overflow: hidden;
-
-    border-radius: 16px;
-
-    border:
-        1px solid rgba(255,255,255,0.075);
-
-    color: #dce7f3;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,0.055),
-            rgba(255,255,255,0.018)
-        );
+    text-align: left;
 
     cursor: pointer;
 
     font-family: inherit;
 
-    font-size: 13px;
-
-    font-weight: 600;
-
-    letter-spacing: 0.8px;
-
-    text-align: left;
-
-    box-shadow:
-        inset 0 1px 0
-        rgba(255,255,255,0.045);
-
     transition:
-
-        transform 0.3s ease,
-
-        background 0.3s ease,
-
-        border 0.3s ease,
-
-        box-shadow 0.3s ease;
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 
 }
 
 
 /* =====================================================
-   ICON
+   NUMBER / ICON
 ===================================================== */
 
-.icon {
+.button-number {
 
     width: 38px;
+
     height: 38px;
 
-    flex-shrink: 0;
+    border-radius: 10px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
-    border-radius: 11px;
+    background: #f3f0e9;
 
-    color: #8edfff;
+    color: var(--blue);
 
-    background:
-        rgba(0,190,255,0.065);
-
-    border:
-        1px solid rgba(0,190,255,0.10);
-
-    font-size: 14px;
+    font-size: 11px;
 
     font-weight: 700;
 
-    transition:
-        transform 0.3s ease,
-        background 0.3s ease;
+    letter-spacing: 0.5px;
+
+    border: 1px solid
+        #e5e1d8;
 
 }
 
 
 /* =====================================================
-   BUTTON ARROW
+   BUTTON TEXT
 ===================================================== */
 
-.arrow {
+.button-text {
 
-    margin-left: auto;
+    display: flex;
 
-    color: #526276;
+    flex-direction: column;
 
-    font-size: 18px;
+    gap: 3px;
 
-    transition:
-        transform 0.3s ease,
-        color 0.3s ease;
+}
+
+
+.button-title {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.7px;
+
+}
+
+
+.button-description {
+
+    color: #96928b;
+
+    font-size: 11px;
 
 }
 
 
 /* =====================================================
-   BUTTON HOVER
+   ARROW
+===================================================== */
+
+.button-arrow {
+
+    width: 28px;
+
+    height: 28px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #aaa69e;
+
+    font-size: 16px;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+
+}
+
+
+/* =====================================================
+   HOVER
 ===================================================== */
 
 .buttons button:hover {
 
-    transform:
-        translateX(4px);
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(0,180,255,0.085),
-            rgba(255,255,255,0.035)
-        );
+    background: #faf9f5;
 
     border-color:
-        rgba(90,205,255,0.20);
+        #c9c4b9;
+
+    transform:
+        translateY(-2px);
 
     box-shadow:
 
-        0 10px 28px
-        rgba(0,0,0,0.22),
-
-        inset 0 1px 0
-        rgba(255,255,255,0.08);
+        0 8px 20px
+        rgba(44,40,31,0.07);
 
 }
 
 
-.buttons button:hover .icon {
+.buttons button:hover
+.button-number {
 
-    transform:
-        scale(1.08);
+    background: var(--blue);
 
-    background:
-        rgba(0,190,255,0.12);
+    color: white;
+
+    border-color: var(--blue);
 
 }
 
 
-.buttons button:hover .arrow {
+.buttons button:hover
+.button-arrow {
+
+    background: var(--charcoal);
+
+    color: white;
 
     transform:
-        translateX(5px);
-
-    color: #72dfff;
+        translateX(2px);
 
 }
 
 
 /* =====================================================
-   ACTIVE
+   SPECIAL ACCENTS
 ===================================================== */
 
-.buttons button:active {
+.buttons a:nth-child(3)
+.button-number {
 
-    transform:
-        translateX(2px)
-        scale(0.99);
+    color: #9b6d29;
 
 }
 
 
-/* =====================================================
-   INDIVIDUAL ACCENTS
-===================================================== */
+.buttons a:nth-child(4)
+.button-number {
 
-.buttons a:nth-child(1) .icon {
-    color: #79aaff;
+    color: #76558f;
+
 }
 
-.buttons a:nth-child(2) .icon {
-    color: #52e7bd;
-}
 
-.buttons a:nth-child(3) .icon {
-    color: #ffba70;
-}
+.buttons a:nth-child(5)
+.button-number {
 
-.buttons a:nth-child(4) .icon {
-    color: #c29aff;
-}
+    color: #47786c;
 
-.buttons a:nth-child(5) .icon {
-    color: #65dfff;
 }
 
 
@@ -688,10 +584,10 @@ h1 {
 
     margin-top: 30px;
 
-    padding-top: 20px;
+    padding-top: 18px;
 
-    border-top:
-        1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid
+        var(--line);
 
     display: flex;
 
@@ -699,11 +595,26 @@ h1 {
 
     align-items: center;
 
-    color: #566579;
+    color: #aaa69e;
 
     font-size: 10px;
 
-    letter-spacing: 0.7px;
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* =====================================================
+   FOOTER GOLD DETAIL
+===================================================== */
+
+.footer::before {
+
+    content: "";
+
+    position: absolute;
 
 }
 
@@ -716,7 +627,7 @@ h1 {
 
     body {
 
-        padding: 20px 12px;
+        padding: 18px 12px;
 
     }
 
@@ -725,27 +636,51 @@ h1 {
 
         padding: 28px 20px;
 
-        border-radius: 25px;
+        border-radius: 21px;
 
     }
 
 
-    h1 {
+    .header {
 
-        font-size: 29px;
+        grid-template-columns:
+            54px 1fr;
+
+        gap: 14px;
+
+        margin-bottom: 25px;
 
     }
 
 
     .logo {
 
-        width: 68px;
-        height: 68px;
+        width: 54px;
+
+        height: 54px;
+
+        border-radius: 14px;
+
+        font-size: 16px;
 
     }
 
 
-    .image-box img {
+    h1 {
+
+        font-size: 27px;
+
+    }
+
+
+    .subtitle {
+
+        font-size: 13px;
+
+    }
+
+
+    .image-box {
 
         height: 175px;
 
@@ -754,7 +689,19 @@ h1 {
 
     .buttons button {
 
-        height: 58px;
+        height: 61px;
+
+        grid-template-columns:
+            38px 1fr 28px;
+
+        padding: 0 12px;
+
+    }
+
+
+    .button-description {
+
+        font-size: 10px;
 
     }
 
@@ -763,7 +710,7 @@ h1 {
 
         flex-direction: column;
 
-        gap: 7px;
+        gap: 8px;
 
         text-align: center;
 
@@ -782,59 +729,65 @@ h1 {
 <div class="container">
 
 
-    <!-- STATUS -->
+    <!-- ================= HEADER ================= -->
 
-    <div class="top-label">
+    <div class="header">
 
-        <span class="status-dot"></span>
+        <div class="logo">
+            LG
+        </div>
 
-        DIGITAL LOGIC LAB
+        <div>
+
+            <div class="kicker">
+                ABTECH · Technology Project
+            </div>
+
+            <h1>
+                Logic Gate Project
+            </h1>
+
+        </div>
 
     </div>
 
 
-    <!-- LOGO -->
-
-    <div class="logo">
-        LG
-    </div>
-
-
-    <!-- TITLE -->
-
-    <h1>
-        Logic Gate Project
-    </h1>
-
+    <!-- ================= INTRO ================= -->
 
     <div class="subtitle">
 
-        Explore digital logic, binary arithmetic,
-        complements and adders through an
-        interactive learning environment.
+        An interactive learning platform for
+        understanding digital logic, binary
+        systems and arithmetic circuits.
 
     </div>
 
 
-    <!-- IMAGE -->
+    <!-- ================= IMAGE ================= -->
 
     <div class="image-box">
 
         <img
             src="https://play-lh.googleusercontent.com/_9Qa05OaLaJtJa5Ez7vozpYZRt6hY1ICMYvBH87uqIfqxlBKqX6RrTOcNyMzDr-7mLA=w3840-h2160-rw"
-            alt="Digital Logic Gates">
+            alt="Logic Gates">
 
     </div>
 
 
-    <!-- NAVIGATION LABEL -->
+    <!-- ================= NAVIGATION ================= -->
 
-    <div class="section-label">
-        Explore Project
+    <div class="navigation-heading">
+
+        <span>
+            Project Modules
+        </span>
+
+        <span>
+            05 Modules
+        </span>
+
     </div>
 
-
-    <!-- BUTTONS -->
 
     <div class="buttons">
 
@@ -845,16 +798,24 @@ h1 {
 
             <button>
 
-                <div class="icon">
-                    ◉
+                <div class="button-number">
+                    01
                 </div>
 
-                <span>
-                    ABOUT US
-                </span>
+                <div class="button-text">
 
-                <div class="arrow">
-                    ›
+                    <div class="button-title">
+                        ABOUT US
+                    </div>
+
+                    <div class="button-description">
+                        Project & team information
+                    </div>
+
+                </div>
+
+                <div class="button-arrow">
+                    →
                 </div>
 
             </button>
@@ -868,16 +829,24 @@ h1 {
 
             <button>
 
-                <div class="icon">
-                    ⌁
+                <div class="button-number">
+                    02
                 </div>
 
-                <span>
-                    LOGIC GATES
-                </span>
+                <div class="button-text">
 
-                <div class="arrow">
-                    ›
+                    <div class="button-title">
+                        LOGIC GATES
+                    </div>
+
+                    <div class="button-description">
+                        Explore fundamental logic operations
+                    </div>
+
+                </div>
+
+                <div class="button-arrow">
+                    →
                 </div>
 
             </button>
@@ -885,22 +854,30 @@ h1 {
         </a>
 
 
-        <!-- BINARY ARITHMETIC -->
+        <!-- BINARY -->
 
         <a href="index4.html">
 
             <button>
 
-                <div class="icon">
-                    01
+                <div class="button-number">
+                    03
                 </div>
 
-                <span>
-                    BINARY ARITHMETIC
-                </span>
+                <div class="button-text">
 
-                <div class="arrow">
-                    ›
+                    <div class="button-title">
+                        BINARY ARITHMETIC
+                    </div>
+
+                    <div class="button-description">
+                        Work with binary numbers and operations
+                    </div>
+
+                </div>
+
+                <div class="button-arrow">
+                    →
                 </div>
 
             </button>
@@ -914,16 +891,24 @@ h1 {
 
             <button>
 
-                <div class="icon">
-                    ⟳
+                <div class="button-number">
+                    04
                 </div>
 
-                <span>
-                    COMPLEMENTS
-                </span>
+                <div class="button-text">
 
-                <div class="arrow">
-                    ›
+                    <div class="button-title">
+                        COMPLEMENTS
+                    </div>
+
+                    <div class="button-description">
+                        Understand binary complement systems
+                    </div>
+
+                </div>
+
+                <div class="button-arrow">
+                    →
                 </div>
 
             </button>
@@ -937,16 +922,24 @@ h1 {
 
             <button>
 
-                <div class="icon">
-                    +
+                <div class="button-number">
+                    05
                 </div>
 
-                <span>
-                    ADDERS
-                </span>
+                <div class="button-text">
 
-                <div class="arrow">
-                    ›
+                    <div class="button-title">
+                        ADDERS
+                    </div>
+
+                    <div class="button-description">
+                        Learn half and full adder circuits
+                    </div>
+
+                </div>
+
+                <div class="button-arrow">
+                    →
                 </div>
 
             </button>
@@ -957,16 +950,16 @@ h1 {
     </div>
 
 
-    <!-- FOOTER -->
+    <!-- ================= FOOTER ================= -->
 
     <div class="footer">
 
         <span>
-            DIGITAL LOGIC SIMULATOR
+            Digital Logic Learning Platform
         </span>
 
         <span>
-            ABTECH TECHNOLOGY PROJECT
+            ABTECH
         </span>
 
     </div>
