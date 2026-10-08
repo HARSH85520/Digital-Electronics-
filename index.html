@@ -1,560 +1,771 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
 <title>Logic Gate Project</title>
 
 <style>
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+
+/* =====================================================
+   BODY
+===================================================== */
 
 body {
-    margin: 0;
+
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+
+    font-family:
+        "Inter",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: #ffffff;
 
     background:
-        radial-gradient(circle at top left, #163c67, transparent 40%),
-        radial-gradient(circle at bottom right, #163b54, transparent 40%),
-        linear-gradient(135deg, #050d18, #0c1d31, #050d18);
+
+        radial-gradient(
+            circle at 15% 15%,
+            rgba(0, 180, 255, 0.13),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(112, 64, 255, 0.12),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #050911 0%,
+            #08111d 50%,
+            #050911 100%
+        );
 
     display: flex;
+
     justify-content: center;
+
     align-items: center;
 
+    padding: 35px 15px;
+
     overflow-x: hidden;
+
 }
 
 
-/* =========================================
+/* =====================================================
+   BACKGROUND ORBS
+===================================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0, 174, 255, 0.06);
+
+    filter: blur(80px);
+
+    top: -120px;
+    left: -100px;
+
+    pointer-events: none;
+
+}
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(125, 70, 255, 0.06);
+
+    filter: blur(80px);
+
+    bottom: -100px;
+    right: -80px;
+
+    pointer-events: none;
+
+}
+
+
+/* =====================================================
    MAIN CARD
-========================================= */
+===================================================== */
 
 .container {
-    width: 92%;
-    max-width: 520px;
 
-    background: rgba(255,255,255,0.07);
+    width: 100%;
 
-    border: 1px solid rgba(255,255,255,0.15);
+    max-width: 560px;
 
-    border-radius: 24px;
+    padding: 42px;
 
-    padding: 38px;
+    position: relative;
 
-    text-align: center;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.025)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.11);
+
+    border-radius: 30px;
+
+    backdrop-filter: blur(25px);
+
+    -webkit-backdrop-filter: blur(25px);
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,0.55);
 
-    backdrop-filter: blur(15px);
+        0 35px 90px
+        rgba(0,0,0,0.48),
 
-    animation: containerIn 0.8s ease;
+        inset 0 1px 0
+        rgba(255,255,255,0.08);
+
+    animation:
+        cardAppear 0.8s ease;
+
 }
 
-@keyframes containerIn {
+
+@keyframes cardAppear {
 
     from {
+
         opacity: 0;
-        transform: translateY(30px) scale(0.97);
+
+        transform:
+            translateY(25px)
+            scale(0.97);
+
     }
 
     to {
+
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+            translateY(0)
+            scale(1);
+
     }
 
 }
 
 
-/* =========================================
+/* =====================================================
+   TOP LABEL
+===================================================== */
+
+.top-label {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        7px 12px;
+
+    margin-bottom: 22px;
+
+    border-radius: 50px;
+
+    background:
+        rgba(0, 190, 255, 0.07);
+
+    border:
+        1px solid rgba(0, 190, 255, 0.16);
+
+    color:
+        #72dfff;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+}
+
+
+/* STATUS DOT */
+
+.status-dot {
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #35e8bd;
+
+    box-shadow:
+        0 0 10px #35e8bd;
+
+}
+
+
+/* =====================================================
    LOGO
-========================================= */
+===================================================== */
 
 .logo {
-    width: 70px;
-    height: 70px;
 
-    margin: 0 auto 18px;
+    width: 76px;
+    height: 76px;
+
+    margin-bottom: 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(30,190,255,0.95),
+            rgba(75,90,255,0.9)
+        );
+
+    box-shadow:
+
+        0 12px 35px
+        rgba(0,150,255,0.25),
+
+        inset 0 1px 1px
+        rgba(255,255,255,0.35);
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+h1 {
+
+    font-size: 36px;
+
+    line-height: 1.15;
+
+    letter-spacing: -1.2px;
+
+    margin-bottom: 12px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #a8dfff
+        );
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+}
+
+
+/* =====================================================
+   SUBTITLE
+===================================================== */
+
+.subtitle {
+
+    color: #8e9daf;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    max-width: 430px;
+
+    margin-bottom: 28px;
+
+}
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.image-box {
+
+    width: 100%;
+
+    padding: 7px;
+
+    margin-bottom: 30px;
 
     border-radius: 20px;
 
     background:
-        linear-gradient(135deg, #2878ff, #00c896);
+        rgba(255,255,255,0.045);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    color: white;
-
-    font-size: 25px;
-    font-weight: bold;
+    border:
+        1px solid rgba(255,255,255,0.08);
 
     box-shadow:
-        0 10px 30px rgba(0,150,255,0.3);
+        0 18px 45px
+        rgba(0,0,0,0.25);
 
-    animation: logoGlow 3s infinite alternate;
-}
-
-@keyframes logoGlow {
-
-    from {
-        box-shadow:
-            0 10px 30px rgba(0,150,255,0.3);
-    }
-
-    to {
-        box-shadow:
-            0 10px 40px rgba(0,220,200,0.55);
-    }
+    overflow: hidden;
 
 }
 
-
-/* =========================================
-   TITLE
-========================================= */
-
-h1 {
-    color: white;
-
-    margin: 0 0 10px;
-
-    font-size: 32px;
-
-    letter-spacing: 1px;
-}
-
-.subtitle {
-    color: #a9b8cc;
-
-    margin-bottom: 28px;
-
-    font-size: 14px;
-
-    line-height: 1.5;
-}
-
-
-/* =========================================
-   IMAGE
-========================================= */
-
-.image-box {
-    background: rgba(255,255,255,0.95);
-
-    padding: 10px;
-
-    border-radius: 17px;
-
-    display: inline-block;
-
-    box-shadow:
-        0 12px 35px rgba(0,0,0,0.4);
-
-    margin-bottom: 30px;
-
-    transition: 0.3s;
-}
-
-.image-box:hover {
-    transform: scale(1.04);
-
-    box-shadow:
-        0 15px 40px rgba(40,140,255,0.35);
-}
 
 .image-box img {
-    width: 240px;
-    height: 180px;
+
+    width: 100%;
+
+    height: 210px;
 
     object-fit: cover;
 
     display: block;
 
-    border-radius: 11px;
+    border-radius: 15px;
+
+    opacity: 0.92;
+
+    transition:
+        transform 0.6s ease,
+        opacity 0.4s ease;
+
 }
 
 
-/* =========================================
-   BUTTON AREA
-========================================= */
+.image-box:hover img {
 
-.buttons {
-    display: flex;
+    transform: scale(1.035);
 
-    flex-direction: column;
+    opacity: 1;
 
-    gap: 14px;
-}
-
-.buttons a {
-    text-decoration: none;
-
-    display: block;
 }
 
 
-/* =========================================
-   ALL BUTTONS
-========================================= */
+/* =====================================================
+   SECTION LABEL
+===================================================== */
 
-.buttons button {
-
-    width: 100%;
-
-    min-height: 58px;
-
-    padding: 16px 18px;
-
-    border: 1px solid rgba(255,255,255,0.14);
-
-    border-radius: 14px;
-
-    color: white;
-
-    font-size: 15px;
-
-    font-weight: bold;
-
-    letter-spacing: 0.8px;
-
-    cursor: pointer;
-
-    position: relative;
-
-    overflow: hidden;
+.section-label {
 
     display: flex;
 
     align-items: center;
 
-    justify-content: center;
+    gap: 10px;
 
-    gap: 11px;
+    margin-bottom: 13px;
 
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease,
-        filter 0.3s ease;
+    color: #66768b;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
 }
 
-
-/* =========================================
-   BUTTON ICON
-========================================= */
-
-.buttons button span {
-
-    font-size: 21px;
-
-    filter:
-        drop-shadow(
-            0 0 6px rgba(255,255,255,0.55)
-        );
-
-    transition:
-        transform 0.3s ease;
-}
-
-.buttons button:hover span {
-
-    transform:
-        scale(1.25)
-        rotate(5deg);
-}
-
-
-/* =========================================
-   BUTTON SHINE
-========================================= */
-
-.buttons button::before {
+.section-label::after {
 
     content: "";
 
-    position: absolute;
+    height: 1px;
 
-    top: 0;
-
-    left: -120%;
-
-    width: 75%;
-
-    height: 100%;
+    flex: 1;
 
     background:
+        rgba(255,255,255,0.07);
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.buttons {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+/* =====================================================
+   LINK
+===================================================== */
+
+.buttons a {
+
+    text-decoration: none;
+
+    display: block;
+
+}
+
+
+/* =====================================================
+   PREMIUM BUTTON
+===================================================== */
+
+.buttons button {
+
+    width: 100%;
+
+    height: 62px;
+
+    padding: 0 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    border:
+        1px solid rgba(255,255,255,0.075);
+
+    color: #dce7f3;
+
+    background:
+
         linear-gradient(
-            90deg,
-            transparent,
-            rgba(255,255,255,0.3),
-            transparent
+            135deg,
+            rgba(255,255,255,0.055),
+            rgba(255,255,255,0.018)
         );
 
-    transform: skewX(-20deg);
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.8px;
+
+    text-align: left;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255,255,255,0.045);
 
     transition:
-        left 0.6s ease;
+
+        transform 0.3s ease,
+
+        background 0.3s ease,
+
+        border 0.3s ease,
+
+        box-shadow 0.3s ease;
+
 }
 
-.buttons button:hover::before {
-    left: 140%;
+
+/* =====================================================
+   ICON
+===================================================== */
+
+.icon {
+
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    color: #8edfff;
+
+    background:
+        rgba(0,190,255,0.065);
+
+    border:
+        1px solid rgba(0,190,255,0.10);
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+
 }
 
 
-/* =========================================
+/* =====================================================
+   BUTTON ARROW
+===================================================== */
+
+.arrow {
+
+    margin-left: auto;
+
+    color: #526276;
+
+    font-size: 18px;
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease;
+
+}
+
+
+/* =====================================================
    BUTTON HOVER
-========================================= */
+===================================================== */
 
 .buttons button:hover {
 
     transform:
-        translateY(-5px)
-        scale(1.015);
+        translateX(4px);
 
-    filter:
-        brightness(1.12);
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(0,180,255,0.085),
+            rgba(255,255,255,0.035)
+        );
+
+    border-color:
+        rgba(90,205,255,0.20);
+
+    box-shadow:
+
+        0 10px 28px
+        rgba(0,0,0,0.22),
+
+        inset 0 1px 0
+        rgba(255,255,255,0.08);
+
 }
+
+
+.buttons button:hover .icon {
+
+    transform:
+        scale(1.08);
+
+    background:
+        rgba(0,190,255,0.12);
+
+}
+
+
+.buttons button:hover .arrow {
+
+    transform:
+        translateX(5px);
+
+    color: #72dfff;
+
+}
+
+
+/* =====================================================
+   ACTIVE
+===================================================== */
 
 .buttons button:active {
 
     transform:
-        scale(0.97);
+        translateX(2px)
+        scale(0.99);
+
 }
 
 
-/* =========================================
-   BUTTON 1 - ABOUT US
-========================================= */
+/* =====================================================
+   INDIVIDUAL ACCENTS
+===================================================== */
 
-.buttons a:nth-child(1) button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #2878ff,
-            #5148e5
-        );
-
-    box-shadow:
-        0 8px 24px
-        rgba(40,120,255,0.30);
+.buttons a:nth-child(1) .icon {
+    color: #79aaff;
 }
 
-.buttons a:nth-child(1) button:hover {
-
-    box-shadow:
-        0 15px 38px
-        rgba(40,120,255,0.55);
+.buttons a:nth-child(2) .icon {
+    color: #52e7bd;
 }
 
-
-/* =========================================
-   BUTTON 2 - LOGIC GATES
-========================================= */
-
-.buttons a:nth-child(2) button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #00a878,
-            #00e0a0
-        );
-
-    box-shadow:
-        0 8px 24px
-        rgba(0,210,155,0.30);
+.buttons a:nth-child(3) .icon {
+    color: #ffba70;
 }
 
-.buttons a:nth-child(2) button:hover {
+.buttons a:nth-child(4) .icon {
+    color: #c29aff;
+}
 
-    box-shadow:
-        0 15px 38px
-        rgba(0,230,170,0.55);
+.buttons a:nth-child(5) .icon {
+    color: #65dfff;
 }
 
 
-/* =========================================
-   BUTTON 3 - BINARY ARITHMETIC
-========================================= */
-
-.buttons a:nth-child(3) button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff8a00,
-            #ff4d4d
-        );
-
-    box-shadow:
-        0 8px 24px
-        rgba(255,120,0,0.32);
-
-    border:
-        1px solid rgba(255,190,80,0.35);
-}
-
-.buttons a:nth-child(3) button:hover {
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff9f1a,
-            #ff5c5c
-        );
-
-    box-shadow:
-        0 15px 38px
-        rgba(255,100,0,0.55);
-}
-
-
-/* =========================================
-   BUTTON 4 - COMPLEMENTS
-========================================= */
-
-.buttons a:nth-child(4) button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #8e44ff,
-            #d62cff
-        );
-
-    box-shadow:
-        0 8px 25px
-        rgba(160,60,255,0.32);
-
-    border:
-        1px solid rgba(210,120,255,0.35);
-}
-
-.buttons a:nth-child(4) button:hover {
-
-    background:
-        linear-gradient(
-            135deg,
-            #a45cff,
-            #ed3cff
-        );
-
-    box-shadow:
-        0 15px 40px
-        rgba(190,60,255,0.58);
-}
-
-
-/* =========================================
-   BUTTON 5 - ADDERS
-========================================= */
-
-.buttons a:nth-child(5) button {
-
-    background:
-        linear-gradient(
-            135deg,
-            #008cff,
-            #00d9ff
-        );
-
-    box-shadow:
-        0 8px 25px
-        rgba(0,180,255,0.32);
-
-    border:
-        1px solid rgba(80,220,255,0.35);
-}
-
-.buttons a:nth-child(5) button:hover {
-
-    background:
-        linear-gradient(
-            135deg,
-            #00a8ff,
-            #22e4ff
-        );
-
-    box-shadow:
-        0 15px 40px
-        rgba(0,205,255,0.58);
-}
-
-
-/* =========================================
+/* =====================================================
    FOOTER
-========================================= */
+===================================================== */
 
 .footer {
 
-    margin-top: 27px;
+    margin-top: 30px;
 
-    padding-top: 18px;
+    padding-top: 20px;
 
     border-top:
-        1px solid rgba(255,255,255,0.08);
+        1px solid rgba(255,255,255,0.06);
 
-    color: #71839b;
+    display: flex;
 
-    font-size: 12px;
+    justify-content: space-between;
 
-    letter-spacing: 0.5px;
+    align-items: center;
+
+    color: #566579;
+
+    font-size: 10px;
+
+    letter-spacing: 0.7px;
+
 }
 
 
-/* =========================================
+/* =====================================================
    MOBILE
-========================================= */
+===================================================== */
 
-@media(max-width: 500px) {
+@media (max-width: 600px) {
 
     body {
-        padding: 20px 0;
+
+        padding: 20px 12px;
+
     }
+
 
     .container {
 
-        width: 94%;
-
         padding: 28px 20px;
 
+        border-radius: 25px;
+
     }
+
 
     h1 {
 
-        font-size: 26px;
+        font-size: 29px;
 
     }
+
 
     .logo {
 
-        width: 60px;
-        height: 60px;
-
-        font-size: 21px;
+        width: 68px;
+        height: 68px;
 
     }
+
 
     .image-box img {
 
-        width: 100%;
-
-        max-width: 240px;
-
-        height: auto;
+        height: 175px;
 
     }
 
+
     .buttons button {
 
-        min-height: 55px;
+        height: 58px;
 
-        font-size: 14px;
+    }
+
+
+    .footer {
+
+        flex-direction: column;
+
+        gap: 7px;
+
+        text-align: center;
 
     }
 
@@ -564,10 +775,22 @@ h1 {
 
 </head>
 
+
 <body>
 
 
 <div class="container">
+
+
+    <!-- STATUS -->
+
+    <div class="top-label">
+
+        <span class="status-dot"></span>
+
+        DIGITAL LOGIC LAB
+
+    </div>
 
 
     <!-- LOGO -->
@@ -585,7 +808,11 @@ h1 {
 
 
     <div class="subtitle">
-        Interactive Digital Logic Learning Platform
+
+        Explore digital logic, binary arithmetic,
+        complements and adders through an
+        interactive learning environment.
+
     </div>
 
 
@@ -594,11 +821,16 @@ h1 {
     <div class="image-box">
 
         <img
-        src="https://play-lh.googleusercontent.com/_9Qa05OaLaJtJa5Ez7vozpYZRt6hY1ICMYvBH87uqIfqxlBKqX6RrTOcNyMzDr-7mLA=w3840-h2160-rw"
-        height="180"
-        width="240"
-        alt="Logic Gates">
+            src="https://play-lh.googleusercontent.com/_9Qa05OaLaJtJa5Ez7vozpYZRt6hY1ICMYvBH87uqIfqxlBKqX6RrTOcNyMzDr-7mLA=w3840-h2160-rw"
+            alt="Digital Logic Gates">
 
+    </div>
+
+
+    <!-- NAVIGATION LABEL -->
+
+    <div class="section-label">
+        Explore Project
     </div>
 
 
@@ -607,13 +839,24 @@ h1 {
     <div class="buttons">
 
 
-        <!-- ABOUT US -->
+        <!-- ABOUT -->
 
         <a href="index2.html">
 
             <button>
-                <span>👨‍💻</span>
-                ABOUT US
+
+                <div class="icon">
+                    ◉
+                </div>
+
+                <span>
+                    ABOUT US
+                </span>
+
+                <div class="arrow">
+                    ›
+                </div>
+
             </button>
 
         </a>
@@ -624,8 +867,19 @@ h1 {
         <a href="index3.html">
 
             <button>
-                <span>⚡</span>
-                LOGIC GATES
+
+                <div class="icon">
+                    ⌁
+                </div>
+
+                <span>
+                    LOGIC GATES
+                </span>
+
+                <div class="arrow">
+                    ›
+                </div>
+
             </button>
 
         </a>
@@ -636,8 +890,19 @@ h1 {
         <a href="index4.html">
 
             <button>
-                <span>🔢</span>
-                BINARY ARITHMETIC
+
+                <div class="icon">
+                    01
+                </div>
+
+                <span>
+                    BINARY ARITHMETIC
+                </span>
+
+                <div class="arrow">
+                    ›
+                </div>
+
             </button>
 
         </a>
@@ -648,8 +913,19 @@ h1 {
         <a href="index5.html">
 
             <button>
-                <span>🔄</span>
-                COMPLEMENTS
+
+                <div class="icon">
+                    ⟳
+                </div>
+
+                <span>
+                    COMPLEMENTS
+                </span>
+
+                <div class="arrow">
+                    ›
+                </div>
+
             </button>
 
         </a>
@@ -660,8 +936,19 @@ h1 {
         <a href="index6.html">
 
             <button>
-                <span>➕</span>
-                ADDERS
+
+                <div class="icon">
+                    +
+                </div>
+
+                <span>
+                    ADDERS
+                </span>
+
+                <div class="arrow">
+                    ›
+                </div>
+
             </button>
 
         </a>
@@ -674,11 +961,13 @@ h1 {
 
     <div class="footer">
 
-        Digital Logic Gate Simulator
+        <span>
+            DIGITAL LOGIC SIMULATOR
+        </span>
 
-        <br><br>
-
-        ABTECH Technology Project
+        <span>
+            ABTECH TECHNOLOGY PROJECT
+        </span>
 
     </div>
 
@@ -687,4 +976,5 @@ h1 {
 
 
 </body>
+
 </html>
