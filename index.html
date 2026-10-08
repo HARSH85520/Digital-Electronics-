@@ -8,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>Logic Gate Project</title>
+<title>ABTECH | Logic Gate Project</title>
 
 
 <style>
@@ -18,281 +18,240 @@
 ===================================================== */
 
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-
-/* =====================================================
-   COLOR SYSTEM
-===================================================== */
-
-:root {
-
-    --cream: #f5f2eb;
-
-    --paper: #fffdf8;
-
-    --charcoal: #1c1d20;
-
-    --muted: #73716c;
-
-    --line: #dedbd3;
-
-    --blue: #315b8c;
-
-    --blue-dark: #24466d;
-
-    --gold: #b28a4b;
-
-    --gold-light: #d5b77b;
-
+html {
+    scroll-behavior: smooth;
 }
-
-
-/* =====================================================
-   BODY
-===================================================== */
 
 body {
 
-    min-height: 100vh;
-
     font-family:
+        "Inter",
         "Segoe UI",
         Arial,
         sans-serif;
 
-    color: var(--charcoal);
+    color: #ffffff;
+
+    background: #090a0d;
+
+    overflow-x: hidden;
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: -5;
 
     background:
 
         radial-gradient(
-            circle at 10% 10%,
-            rgba(178,138,75,0.10),
-            transparent 28%
+            ellipse at 20% 20%,
+            rgba(69, 104, 125, 0.35),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            ellipse at 80% 10%,
+            rgba(48, 70, 87, 0.28),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            ellipse at 50% 100%,
+            rgba(37, 48, 61, 0.35),
+            transparent 40%
+        ),
+
+        #090a0d;
+}
+
+
+/* =====================================================
+   SUBTLE LIGHT
+===================================================== */
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 650px;
+    height: 650px;
+
+    top: -300px;
+    right: -250px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(112, 151, 170, 0.14),
+            transparent 65%
+        );
+
+    filter: blur(30px);
+
+    z-index: -4;
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+
+    width: calc(100% - 80px);
+
+    max-width: 1450px;
+
+    min-height: 92vh;
+
+    margin: 40px auto 0;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    background:
+
+        radial-gradient(
+            ellipse at 80% 15%,
+            rgba(118, 157, 177, 0.27),
+            transparent 27%
+        ),
+
+        radial-gradient(
+            ellipse at 65% 55%,
+            rgba(49, 76, 94, 0.36),
+            transparent 42%
         ),
 
         linear-gradient(
             135deg,
-            #eeeae1,
-            #f7f4ed 45%,
-            #eae7df
+            #0a0918 0%,
+            #101222 45%,
+            #071017 100%
         );
 
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    padding: 40px 20px;
-
-}
-
-
-/* =====================================================
-   MAIN CARD
-===================================================== */
-
-.container {
-
-    width: 100%;
-
-    max-width: 570px;
-
-    background: var(--paper);
-
-    border: 1px solid
-        rgba(28,29,32,0.08);
-
-    border-radius: 26px;
-
-    padding: 44px;
-
     box-shadow:
 
-        0 25px 70px
-        rgba(38,35,29,0.13),
+        0 35px 100px
+        rgba(0,0,0,0.45),
 
-        0 3px 10px
-        rgba(38,35,29,0.05);
-
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
-
-.header {
-
-    display: grid;
-
-    grid-template-columns:
-        64px 1fr;
-
-    align-items: center;
-
-    gap: 18px;
-
-    margin-bottom: 32px;
+        inset 0 1px 0
+        rgba(255,255,255,0.06);
 
 }
 
 
 /* =====================================================
-   LOGO
+   HERO ATMOSPHERIC LIGHT
 ===================================================== */
 
-.logo {
+.hero::before {
 
-    width: 64px;
+    content: "";
 
-    height: 64px;
+    position: absolute;
 
-    display: flex;
+    width: 750px;
+    height: 750px;
 
-    align-items: center;
+    right: -180px;
+    top: -310px;
 
-    justify-content: center;
+    border-radius: 50%;
 
-    border-radius: 17px;
+    background:
 
-    background: var(--charcoal);
+        radial-gradient(
+            circle,
+            rgba(145,180,195,0.22),
+            rgba(87,123,141,0.10) 30%,
+            transparent 65%
+        );
 
-    color: white;
+    filter: blur(18px);
 
-    font-size: 19px;
-
-    font-weight: 700;
-
-    letter-spacing: 1px;
-
-    box-shadow:
-        0 8px 18px
-        rgba(28,29,32,0.15);
+    pointer-events: none;
 
 }
 
 
 /* =====================================================
-   SMALL LABEL
+   DIAGONAL LIGHT
 ===================================================== */
 
-.kicker {
+.hero::after {
 
-    color: var(--gold);
+    content: "";
 
-    font-size: 10px;
+    position: absolute;
 
-    font-weight: 700;
+    width: 850px;
+    height: 170px;
 
-    letter-spacing: 2px;
+    right: -160px;
+    top: 80px;
 
-    text-transform: uppercase;
+    transform:
+        rotate(-27deg);
 
-    margin-bottom: 7px;
+    background:
+
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(170,205,220,0.12),
+            transparent
+        );
+
+    filter: blur(25px);
+
+    pointer-events: none;
 
 }
 
 
 /* =====================================================
-   TITLE
+   NAVIGATION
 ===================================================== */
 
-h1 {
+.navbar {
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+    position: relative;
 
-    font-size: 34px;
+    z-index: 5;
 
-    line-height: 1.1;
+    height: 90px;
 
-    font-weight: 600;
-
-    color: var(--charcoal);
-
-    letter-spacing: -0.6px;
-
-}
-
-
-/* =====================================================
-   SUBTITLE
-===================================================== */
-
-.subtitle {
-
-    color: var(--muted);
-
-    font-size: 14px;
-
-    line-height: 1.7;
-
-    margin-bottom: 28px;
-
-    max-width: 460px;
-
-}
-
-
-/* =====================================================
-   IMAGE
-===================================================== */
-
-.image-box {
-
-    width: 100%;
-
-    height: 205px;
-
-    margin-bottom: 32px;
-
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    background: #e9e6df;
-
-    border: 1px solid
-        var(--line);
-
-}
-
-
-.image-box img {
-
-    width: 100%;
-
-    height: 100%;
-
-    display: block;
-
-    object-fit: cover;
-
-    transition:
-        transform 0.5s ease;
-
-}
-
-
-.image-box:hover img {
-
-    transform: scale(1.025);
-
-}
-
-
-/* =====================================================
-   NAVIGATION HEADER
-===================================================== */
-
-.navigation-heading {
+    padding:
+        0 38px;
 
     display: flex;
 
@@ -300,119 +259,509 @@ h1 {
 
     justify-content: space-between;
 
-    margin-bottom: 12px;
-
 }
 
 
-.navigation-heading span:first-child {
+/* =====================================================
+   BRAND
+===================================================== */
 
-    color: var(--charcoal);
+.brand {
 
-    font-size: 12px;
+    display: flex;
 
-    font-weight: 700;
+    align-items: center;
 
-    letter-spacing: 1.3px;
+    gap: 9px;
+
+    color: rgba(255,255,255,0.85);
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+    letter-spacing: 1.5px;
 
     text-transform: uppercase;
 
 }
 
+.brand-mark {
 
-.navigation-heading span:last-child {
+    width: 8px;
+    height: 8px;
 
-    color: #aaa69e;
+    border:
+        1px solid rgba(255,255,255,0.75);
 
-    font-size: 11px;
+    border-radius: 50%;
 
 }
 
 
 /* =====================================================
-   BUTTON LIST
+   NAV LINKS
 ===================================================== */
 
-.buttons {
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+}
+
+.nav-links a {
+
+    color:
+        rgba(255,255,255,0.55);
+
+    text-decoration: none;
+
+    font-size: 8px;
+
+    letter-spacing: 0.8px;
+
+    text-transform: uppercase;
+
+    transition:
+        color 0.25s ease;
+
+}
+
+.nav-links a:hover {
+
+    color: white;
+
+}
+
+
+/* =====================================================
+   ABOUT BUTTON
+===================================================== */
+
+.about-button {
+
+    padding:
+        8px 15px;
+
+    border-radius: 50px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.28);
+
+    background:
+        rgba(255,255,255,0.035);
+
+    color: rgba(255,255,255,0.85) !important;
+
+    backdrop-filter: blur(10px);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+
+}
+
+.about-button:hover {
+
+    background:
+        rgba(255,255,255,0.10);
+
+    border-color:
+        rgba(255,255,255,0.50);
+
+    transform:
+        translateY(-1px);
+
+}
+
+
+/* =====================================================
+   HERO CONTENT
+===================================================== */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    min-height:
+        calc(92vh - 90px);
 
     display: flex;
 
     flex-direction: column;
 
-    gap: 9px;
+    justify-content: center;
+
+    padding:
+        30px 8% 100px;
 
 }
 
 
 /* =====================================================
-   BUTTON LINK
+   EYEBROW
 ===================================================== */
 
-.buttons a {
+.eyebrow {
 
-    text-decoration: none;
+    color:
+        rgba(188,207,217,0.70);
 
-    display: block;
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 20px;
 
 }
 
 
 /* =====================================================
-   PREMIUM NAVIGATION BUTTON
+   WELCOME
 ===================================================== */
 
-.buttons button {
+.hero h1 {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(58px, 8vw, 108px);
+
+    line-height:
+        0.92;
+
+    font-weight: 400;
+
+    letter-spacing:
+        7px;
+
+    color:
+        #f2f3f1;
+
+    margin-bottom: 28px;
+
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.hero-description {
 
     width: 100%;
 
-    height: 64px;
+    max-width: 510px;
 
-    border: 1px solid
-        var(--line);
+    color:
+        rgba(218,224,226,0.62);
 
-    border-radius: 13px;
+    font-size: 12px;
 
-    background: #ffffff;
+    line-height: 1.9;
 
-    color: var(--charcoal);
+    letter-spacing: 0.15px;
+
+}
+
+
+/* =====================================================
+   SMALL LINE
+===================================================== */
+
+.hero-line {
+
+    width: 42px;
+
+    height: 1px;
+
+    margin:
+        25px 0 0;
+
+    background:
+        rgba(255,255,255,0.45);
+
+}
+
+
+/* =====================================================
+   SCROLL INDICATOR
+===================================================== */
+
+.scroll-indicator {
+
+    position: absolute;
+
+    left: 8%;
+
+    bottom: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color:
+        rgba(255,255,255,0.38);
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+}
+
+.scroll-line {
+
+    width: 34px;
+
+    height: 1px;
+
+    background:
+        rgba(255,255,255,0.30);
+
+}
+
+
+/* =====================================================
+   MODULE SECTION
+===================================================== */
+
+.modules {
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding:
+        130px 30px 120px;
+
+}
+
+
+/* =====================================================
+   SECTION HEADER
+===================================================== */
+
+.section-header {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 42px;
+
+}
+
+.section-label {
+
+    color:
+        #77838a;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 12px;
+
+}
+
+.section-title {
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 42px;
+
+    font-weight: 400;
+
+    color:
+        #e9e9e6;
+
+}
+
+.section-count {
+
+    color:
+        #596268;
+
+    font-size: 10px;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+/* =====================================================
+   CARD GRID
+===================================================== */
+
+.card-grid {
 
     display: grid;
 
     grid-template-columns:
-        42px 1fr 30px;
+        repeat(2, 1fr);
 
-    align-items: center;
-
-    gap: 13px;
-
-    padding: 0 16px;
-
-    text-align: left;
-
-    cursor: pointer;
-
-    font-family: inherit;
-
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    gap: 16px;
 
 }
 
 
 /* =====================================================
-   NUMBER / ICON
+   GLASS CARD
 ===================================================== */
 
-.button-number {
+.module-card {
 
-    width: 38px;
+    min-height: 220px;
 
-    height: 38px;
+    padding: 28px;
 
-    border-radius: 10px;
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    border-radius: 22px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.025)
+        );
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+
+        inset 0 1px 0
+        rgba(255,255,255,0.07),
+
+        0 20px 50px
+        rgba(0,0,0,0.18);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
+
+}
+
+
+/* =====================================================
+   CARD HOVER
+===================================================== */
+
+.module-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(255,255,255,0.20);
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.035)
+        );
+
+}
+
+
+/* =====================================================
+   LARGE CARD
+===================================================== */
+
+.module-card:first-child {
+
+    grid-column:
+        span 2;
+
+    min-height:
+        190px;
+
+}
+
+
+/* =====================================================
+   CARD TOP
+===================================================== */
+
+.card-top {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+}
+
+
+/* =====================================================
+   CARD NUMBER
+===================================================== */
+
+.card-number {
+
+    color:
+        rgba(255,255,255,0.35);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+}
+
+
+/* =====================================================
+   CARD SYMBOL
+===================================================== */
+
+.card-symbol {
+
+    width: 40px;
+    height: 40px;
 
     display: flex;
 
@@ -420,66 +769,91 @@ h1 {
 
     justify-content: center;
 
-    background: #f3f0e9;
+    border-radius: 12px;
 
-    color: var(--blue);
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
 
-    font-size: 11px;
+    background:
+        rgba(255,255,255,0.045);
 
-    font-weight: 700;
+    color:
+        rgba(220,230,235,0.80);
 
-    letter-spacing: 0.5px;
-
-    border: 1px solid
-        #e5e1d8;
+    font-size: 14px;
 
 }
 
 
 /* =====================================================
-   BUTTON TEXT
+   CARD BOTTOM
 ===================================================== */
 
-.button-text {
+.card-bottom {
 
     display: flex;
 
-    flex-direction: column;
+    align-items: flex-end;
 
-    gap: 3px;
+    justify-content: space-between;
 
-}
-
-
-.button-title {
-
-    font-size: 13px;
-
-    font-weight: 700;
-
-    letter-spacing: 0.7px;
-
-}
-
-
-.button-description {
-
-    color: #96928b;
-
-    font-size: 11px;
+    gap: 20px;
 
 }
 
 
 /* =====================================================
-   ARROW
+   CARD TITLE
 ===================================================== */
 
-.button-arrow {
+.card-title {
 
-    width: 28px;
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
 
-    height: 28px;
+    color:
+        #e9ebea;
+
+    font-size: 25px;
+
+    font-weight: 400;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* =====================================================
+   CARD DESCRIPTION
+===================================================== */
+
+.card-description {
+
+    max-width: 390px;
+
+    color:
+        rgba(198,207,211,0.52);
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   CARD ARROW
+===================================================== */
+
+.card-arrow {
+
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 38px;
 
     border-radius: 50%;
 
@@ -489,117 +863,73 @@ h1 {
 
     justify-content: center;
 
-    color: #aaa69e;
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    color:
+        rgba(255,255,255,0.55);
 
     font-size: 16px;
 
     transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        transform 0.25s ease;
+        transform 0.3s ease,
+        background 0.3s ease,
+        color 0.3s ease;
 
 }
 
-
-/* =====================================================
-   HOVER
-===================================================== */
-
-.buttons button:hover {
-
-    background: #faf9f5;
-
-    border-color:
-        #c9c4b9;
+.module-card:hover .card-arrow {
 
     transform:
-        translateY(-2px);
+        translateX(4px);
 
-    box-shadow:
-
-        0 8px 20px
-        rgba(44,40,31,0.07);
-
-}
-
-
-.buttons button:hover
-.button-number {
-
-    background: var(--blue);
+    background:
+        rgba(255,255,255,0.10);
 
     color: white;
 
-    border-color: var(--blue);
-
 }
 
 
-.buttons button:hover
-.button-arrow {
+/* =====================================================
+   CARD LINKS
+===================================================== */
 
-    background: var(--charcoal);
+.module-card a {
 
-    color: white;
+    position: absolute;
 
-    transform:
-        translateX(2px);
+    inset: 0;
+
+    z-index: 5;
 
 }
 
 
 /* =====================================================
-   SPECIAL ACCENTS
+   BOTTOM FOOTER
 ===================================================== */
 
-.buttons a:nth-child(3)
-.button-number {
+.bottom {
 
-    color: #9b6d29;
+    max-width: 1100px;
 
-}
+    margin: 0 auto;
 
-
-.buttons a:nth-child(4)
-.button-number {
-
-    color: #76558f;
-
-}
-
-
-.buttons a:nth-child(5)
-.button-number {
-
-    color: #47786c;
-
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-.footer {
-
-    margin-top: 30px;
-
-    padding-top: 18px;
-
-    border-top: 1px solid
-        var(--line);
+    padding:
+        0 30px 40px;
 
     display: flex;
 
     justify-content: space-between;
 
-    align-items: center;
+    color:
+        #4f595e;
 
-    color: #aaa69e;
+    font-size: 9px;
 
-    font-size: 10px;
-
-    letter-spacing: 0.8px;
+    letter-spacing: 1.5px;
 
     text-transform: uppercase;
 
@@ -607,14 +937,101 @@ h1 {
 
 
 /* =====================================================
-   FOOTER GOLD DETAIL
+   REVEAL ANIMATION
 ===================================================== */
 
-.footer::before {
+.reveal {
 
-    content: "";
+    opacity: 0;
 
-    position: absolute;
+    transform:
+        translateY(35px);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s ease;
+
+}
+
+.reveal.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .hero {
+
+        width:
+            calc(100% - 30px);
+
+        margin-top: 15px;
+
+        min-height:
+            88vh;
+
+        border-radius: 23px;
+
+    }
+
+    .navbar {
+
+        padding:
+            0 23px;
+
+    }
+
+    .nav-links {
+
+        gap: 14px;
+
+    }
+
+    .nav-links a:not(.about-button) {
+
+        display: none;
+
+    }
+
+    .hero-content {
+
+        padding:
+            30px 8% 90px;
+
+    }
+
+    .hero h1 {
+
+        font-size:
+            clamp(50px, 14vw, 80px);
+
+        letter-spacing:
+            4px;
+
+    }
+
+    .card-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .module-card:first-child {
+
+        grid-column:
+            span 1;
+
+    }
 
 }
 
@@ -623,96 +1040,145 @@ h1 {
    MOBILE
 ===================================================== */
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
 
-    body {
+    .hero {
 
-        padding: 18px 12px;
+        width:
+            calc(100% - 20px);
 
-    }
-
-
-    .container {
-
-        padding: 28px 20px;
-
-        border-radius: 21px;
+        min-height:
+            90vh;
 
     }
 
+    .navbar {
 
-    .header {
+        height: 75px;
 
-        grid-template-columns:
-            54px 1fr;
-
-        gap: 14px;
-
-        margin-bottom: 25px;
+        padding:
+            0 20px;
 
     }
 
+    .brand {
 
-    .logo {
-
-        width: 54px;
-
-        height: 54px;
-
-        border-radius: 14px;
-
-        font-size: 16px;
+        font-size: 9px;
 
     }
 
+    .about-button {
 
-    h1 {
+        padding:
+            7px 12px;
 
-        font-size: 27px;
-
-    }
-
-
-    .subtitle {
-
-        font-size: 13px;
+        font-size: 8px !important;
 
     }
 
+    .hero-content {
 
-    .image-box {
-
-        height: 175px;
-
-    }
-
-
-    .buttons button {
-
-        height: 61px;
-
-        grid-template-columns:
-            38px 1fr 28px;
-
-        padding: 0 12px;
+        padding:
+            20px 25px 80px;
 
     }
 
+    .eyebrow {
 
-    .button-description {
-
-        font-size: 10px;
+        font-size: 8px;
 
     }
 
+    .hero h1 {
 
-    .footer {
+        font-size:
+            52px;
 
-        flex-direction: column;
+        letter-spacing:
+            3px;
+
+        margin-bottom:
+            24px;
+
+    }
+
+    .hero-description {
+
+        font-size:
+            11px;
+
+        line-height:
+            1.8;
+
+    }
+
+    .scroll-indicator {
+
+        left: 25px;
+
+        bottom: 28px;
+
+    }
+
+    .modules {
+
+        padding:
+            90px 18px;
+
+    }
+
+    .section-header {
+
+        align-items:
+            flex-start;
+
+        flex-direction:
+            column;
+
+        gap: 10px;
+
+    }
+
+    .section-title {
+
+        font-size:
+            35px;
+
+    }
+
+    .module-card {
+
+        min-height:
+            205px;
+
+        padding:
+            23px;
+
+    }
+
+    .card-title {
+
+        font-size:
+            22px;
+
+    }
+
+    .card-description {
+
+        font-size:
+            10px;
+
+    }
+
+    .bottom {
+
+        padding:
+            0 20px 30px;
+
+        flex-direction:
+            column;
 
         gap: 8px;
-
-        text-align: center;
 
     }
 
@@ -726,246 +1192,438 @@ h1 {
 <body>
 
 
-<div class="container">
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
 
 
-    <!-- ================= HEADER ================= -->
+    <!-- NAVIGATION -->
 
-    <div class="header">
+    <nav class="navbar">
 
-        <div class="logo">
-            LG
+
+        <div class="brand">
+
+            <span class="brand-mark"></span>
+
+            ABTECH
+
         </div>
+
+
+        <div class="nav-links">
+
+            <a href="#modules">
+                Modules
+            </a>
+
+            <a href="#modules">
+                Logic
+            </a>
+
+            <a href="index2.html"
+               class="about-button">
+
+                ABOUT US
+
+            </a>
+
+        </div>
+
+
+    </nav>
+
+
+    <!-- HERO CONTENT -->
+
+    <div class="hero-content">
+
+
+        <div class="eyebrow">
+
+            ABTECH · DIGITAL LOGIC PROJECT
+
+        </div>
+
+
+        <h1>
+            WELCOME
+        </h1>
+
+
+        <p class="hero-description">
+
+            ABTECH is a technology-focused academic project
+            created to make digital logic easier to understand,
+            explore and apply. Our platform brings together
+            logic gates, binary arithmetic, complements and
+            adder circuits in one simple interactive experience.
+
+        </p>
+
+
+        <div class="hero-line"></div>
+
+
+    </div>
+
+
+    <!-- SCROLL -->
+
+    <div class="scroll-indicator">
+
+        <span class="scroll-line"></span>
+
+        SCROLL TO EXPLORE
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     MODULES
+===================================================== -->
+
+<section
+    class="modules"
+    id="modules"
+>
+
+
+    <div class="section-header reveal">
+
 
         <div>
 
-            <div class="kicker">
-                ABTECH · Technology Project
+            <div class="section-label">
+                Explore the project
             </div>
 
-            <h1>
-                Logic Gate Project
-            </h1>
+            <h2 class="section-title">
+                Modules
+            </h2>
 
         </div>
 
-    </div>
 
+        <div class="section-count">
 
-    <!-- ================= INTRO ================= -->
+            05 MODULES
 
-    <div class="subtitle">
+        </div>
 
-        An interactive learning platform for
-        understanding digital logic, binary
-        systems and arithmetic circuits.
-
-    </div>
-
-
-    <!-- ================= IMAGE ================= -->
-
-    <div class="image-box">
-
-        <img
-            src="https://play-lh.googleusercontent.com/_9Qa05OaLaJtJa5Ez7vozpYZRt6hY1ICMYvBH87uqIfqxlBKqX6RrTOcNyMzDr-7mLA=w3840-h2160-rw"
-            alt="Logic Gates">
 
     </div>
 
 
-    <!-- ================= NAVIGATION ================= -->
 
-    <div class="navigation-heading">
-
-        <span>
-            Project Modules
-        </span>
-
-        <span>
-            05 Modules
-        </span>
-
-    </div>
-
-
-    <div class="buttons">
+    <div class="card-grid">
 
 
         <!-- ABOUT -->
 
-        <a href="index2.html">
+        <div class="module-card reveal">
 
-            <button>
+            <a href="index2.html"></a>
 
-                <div class="button-number">
-                    01
+            <div class="card-top">
+
+                <span class="card-number">
+                    01 / ABOUT
+                </span>
+
+                <div class="card-symbol">
+                    ○
                 </div>
 
-                <div class="button-text">
+            </div>
 
-                    <div class="button-title">
-                        ABOUT US
+
+            <div class="card-bottom">
+
+                <div>
+
+                    <div class="card-title">
+                        About Us
                     </div>
 
-                    <div class="button-description">
-                        Project & team information
+                    <div class="card-description">
+
+                        Discover the purpose, vision and
+                        people behind the ABTECH technology
+                        project.
+
                     </div>
 
                 </div>
 
-                <div class="button-arrow">
+                <div class="card-arrow">
                     →
                 </div>
 
-            </button>
+            </div>
 
-        </a>
+        </div>
+
 
 
         <!-- LOGIC GATES -->
 
-        <a href="index3.html">
+        <div class="module-card reveal">
 
-            <button>
+            <a href="index3.html"></a>
 
-                <div class="button-number">
-                    02
+            <div class="card-top">
+
+                <span class="card-number">
+                    02 / LOGIC
+                </span>
+
+                <div class="card-symbol">
+                    ◇
                 </div>
 
-                <div class="button-text">
+            </div>
 
-                    <div class="button-title">
-                        LOGIC GATES
+
+            <div class="card-bottom">
+
+                <div>
+
+                    <div class="card-title">
+                        Logic Gates
                     </div>
 
-                    <div class="button-description">
-                        Explore fundamental logic operations
+                    <div class="card-description">
+
+                        Explore AND, OR, NOT, NAND,
+                        NOR, XOR and XNOR operations.
+
                     </div>
 
                 </div>
 
-                <div class="button-arrow">
+                <div class="card-arrow">
                     →
                 </div>
 
-            </button>
+            </div>
 
-        </a>
+        </div>
+
 
 
         <!-- BINARY -->
 
-        <a href="index4.html">
+        <div class="module-card reveal">
 
-            <button>
+            <a href="index4.html"></a>
 
-                <div class="button-number">
-                    03
+            <div class="card-top">
+
+                <span class="card-number">
+                    03 / BINARY
+                </span>
+
+                <div class="card-symbol">
+                    01
                 </div>
 
-                <div class="button-text">
+            </div>
 
-                    <div class="button-title">
-                        BINARY ARITHMETIC
+
+            <div class="card-bottom">
+
+                <div>
+
+                    <div class="card-title">
+                        Binary Arithmetic
                     </div>
 
-                    <div class="button-description">
-                        Work with binary numbers and operations
+                    <div class="card-description">
+
+                        Learn how numbers are represented
+                        and calculated using binary systems.
+
                     </div>
 
                 </div>
 
-                <div class="button-arrow">
+                <div class="card-arrow">
                     →
                 </div>
 
-            </button>
+            </div>
 
-        </a>
+        </div>
+
 
 
         <!-- COMPLEMENTS -->
 
-        <a href="index5.html">
+        <div class="module-card reveal">
 
-            <button>
+            <a href="index5.html"></a>
 
-                <div class="button-number">
-                    04
+            <div class="card-top">
+
+                <span class="card-number">
+                    04 / COMPLEMENTS
+                </span>
+
+                <div class="card-symbol">
+                    ↻
                 </div>
 
-                <div class="button-text">
+            </div>
 
-                    <div class="button-title">
-                        COMPLEMENTS
+
+            <div class="card-bottom">
+
+                <div>
+
+                    <div class="card-title">
+                        Complements
                     </div>
 
-                    <div class="button-description">
-                        Understand binary complement systems
+                    <div class="card-description">
+
+                        Understand one's complement,
+                        two's complement and signed values.
+
                     </div>
 
                 </div>
 
-                <div class="button-arrow">
+                <div class="card-arrow">
                     →
                 </div>
 
-            </button>
+            </div>
 
-        </a>
+        </div>
+
 
 
         <!-- ADDERS -->
 
-        <a href="index6.html">
+        <div class="module-card reveal">
 
-            <button>
+            <a href="index6.html"></a>
 
-                <div class="button-number">
-                    05
+            <div class="card-top">
+
+                <span class="card-number">
+                    05 / CIRCUITS
+                </span>
+
+                <div class="card-symbol">
+                    +
                 </div>
 
-                <div class="button-text">
+            </div>
 
-                    <div class="button-title">
-                        ADDERS
+
+            <div class="card-bottom">
+
+                <div>
+
+                    <div class="card-title">
+                        Adders
                     </div>
 
-                    <div class="button-description">
-                        Learn half and full adder circuits
+                    <div class="card-description">
+
+                        Study half adders, full adders,
+                        carry logic and binary addition.
+
                     </div>
 
                 </div>
 
-                <div class="button-arrow">
+                <div class="card-arrow">
                     →
                 </div>
 
-            </button>
+            </div>
 
-        </a>
+        </div>
 
 
     </div>
 
-
-    <!-- ================= FOOTER ================= -->
-
-    <div class="footer">
-
-        <span>
-            Digital Logic Learning Platform
-        </span>
-
-        <span>
-            ABTECH
-        </span>
-
-    </div>
+</section>
 
 
-</div>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="bottom">
+
+    <span>
+        ABTECH TECHNOLOGY PROJECT
+    </span>
+
+    <span>
+        DIGITAL LOGIC · 2026
+    </span>
+
+</footer>
+
+
+
+<script>
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+
+const observer =
+    new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach(
+                (entry) => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target
+                            .classList
+                            .add("visible");
+
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: 0.12
+        }
+
+    );
+
+
+revealElements.forEach(
+    element => observer.observe(element)
+);
+
+</script>
 
 
 </body>
