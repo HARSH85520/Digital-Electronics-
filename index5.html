@@ -1,0 +1,243 @@
+<!DOCTYPE html> <html> <head>
+
+<title>1's and 2's Complement</title>
+
+<style>
+
+body { background: #141e30; font-family: Arial; color: white; text-align: center; padding: 40px; }
+
+.container { width: 650px; max-width: 95%; margin: auto; background: #263653; padding: 30px; border-radius: 15px; box-shadow: 0 0 25px black; }
+
+h1 { color: #00eaff; }
+
+input { width: 90%; padding: 14px; font-size: 20px; text-align: center; border-radius: 8px; border: 2px solid #00eaff; margin: 20px 0; }
+
+button { width: 95%; padding: 14px; font-size: 18px; color: white; background: #007bff; border: none; border-radius: 8px; cursor: pointer; }
+
+button:hover { background: #00aaff; }
+
+.error { color: #ff5555; margin-top: 15px; }
+
+.result { margin-top: 25px; }
+
+.output { background: #101725; padding: 20px; border-radius: 10px; margin-top: 10px; margin-bottom: 25px; }
+
+.output h2 { color: #ffd700; }
+
+.binary { font-family: "Courier New", monospace; font-size: 20px; color: #00ff99; white-space: pre; text-align: center; line-height: 1.7; overflow-x: auto; }
+
+.final { color: #00eaff; font-weight: bold; }
+
+.footer { color: #aaa; font-size: 13px; margin-top: 20px; }
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Binary Complement Calculator</h1>
+
+<p>Digital Electronics Practical</p>
+
+<input type="text" id="binary" placeholder="Enter Binary Number"
+
+<br>
+
+<button onclick="calculate()"> Calculate 1's and 2's Complement </button>
+
+<div id="error" class="error"></div>
+
+<div id="result" class="result" style="display:none;">
+
+<!-- ORIGINAL NUMBER -->
+
+<div class="output">
+
+<h2>Original Binary</h2>
+
+<div id="original" class="binary"></div>
+
+</div>
+
+<!-- 1'S COMPLEMENT -->
+
+<div class="output">
+
+<h2>1's Complement</h2>
+
+<div id="onesCalculation" class="binary"></div>
+
+</div>
+
+<!-- 2'S COMPLEMENT -->
+
+<div class="output">
+
+<h2>2's Complement</h2>
+
+<div id="twosCalculation" class="binary"></div>
+
+</div>
+
+</div>
+
+<div class="footer"> Digital Electronics Practical </div>
+
+</div>
+
+<script>
+
+function calculate() {
+
+var binary = document.getElementById("binary").value.trim();
+
+var error = document.getElementById("error");
+
+var result = document.getElementById("result");
+
+error.innerHTML = "";
+
+result.style.display = "none";
+
+/* CHECK EMPTY INPUT */
+
+if (binary == "") {
+
+error.innerHTML = "Please enter a binary number.";
+
+return; }
+
+/* CHECK BINARY INPUT */
+
+for (var i = 0; i < binary.length; i++) {
+
+if (binary[i] != "0" && binary[i] != "1") {
+
+error.innerHTML = "Invalid input! Enter only 0 and 1.";
+
+return; } }
+
+/* ========================================= FIND 1'S COMPLEMENT ========================================= */
+
+var ones = "";
+
+for (var i = 0; i < binary.length; i++) {
+
+if (binary[i] == "0") {
+
+ones = ones + "1";
+
+} else {
+
+ones = ones + "0";
+
+} }
+
+/* ========================================= 1'S COMPLEMENT DISPLAY ========================================= */
+
+var arrows = "";
+
+var spaces = "";
+
+for (var i = 0; i < binary.length; i++) {
+
+arrows = arrows + "^ ";
+
+spaces = spaces + " "; }
+
+var onesDisplay = "Original : " + binary + "\n" + " " + arrows + "\n" + "Invert : " + ones + "\n" + "\n" + "0 becomes 1 and 1 becomes 0";
+
+/* ========================================= FIND 2'S COMPLEMENT ========================================= */
+
+var digits = ones.split("");
+
+var carry = 1;
+
+for ( var i = digits.length - 1; i >= 0; i-- ) {
+
+if (carry == 1) {
+
+if (digits[i] == "0") {
+
+digits[i] = "1";
+
+carry = 0;
+
+} else {
+
+digits[i] = "0";
+
+}
+
+}
+
+}
+
+var twos = digits.join("");
+
+/* ========================================= CREATE NUMBER 1 ========================================= */
+
+var one = "";
+
+for ( var i = 0; i < binary.length - 1; i++ ) {
+
+one = one + "0";
+
+}
+
+one = one + "1";
+
+/* ========================================= CREATE ADDITION LINE ========================================= */
+
+var line = "";
+
+for ( var i = 0; i < binary.length; i++ ) {
+
+line = line + "-";
+
+}
+
+/* ========================================= 2'S COMPLEMENT DISPLAY ========================================= */
+
+var twosDisplay = "1's Complement\n\n" +
+
+" " + ones + "\n" +
+
+" + " + one + "\n" +
+
+" " + line + "\n" +
+
+" " + twos;
+
+/* ========================================= DISPLAY EVERYTHING ========================================= */
+
+document.getElementById("original").innerText = binary;
+
+document.getElementById("onesCalculation").innerText = onesDisplay;
+
+document.getElementById("twosCalculation").innerText = twosDisplay;
+
+result.style.display = "block";
+
+}
+
+/* ENTER KEY */
+
+document.getElementById("binary") .addEventListener( "keydown", function(event) {
+
+if (event.key == "Enter") {
+
+calculate();
+
+}
+
+} );
+
+</script>
+
+</body>
+
+</html>
