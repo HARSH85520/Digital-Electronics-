@@ -2,1630 +2,778 @@
 <html lang="en">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>ABTECH | Logic Gate Project</title>
-
-
-<style>
-
-/* =====================================================
-   RESET
-===================================================== */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-
-    font-family:
-        "Inter",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    color: #ffffff;
-
-    background: #090a0d;
-
-    overflow-x: hidden;
-}
-
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
-
-body::before {
-
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: -5;
-
-    background:
-
-        radial-gradient(
-            ellipse at 20% 20%,
-            rgba(69, 104, 125, 0.35),
-            transparent 35%
-        ),
-
-        radial-gradient(
-            ellipse at 80% 10%,
-            rgba(48, 70, 87, 0.28),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            ellipse at 50% 100%,
-            rgba(37, 48, 61, 0.35),
-            transparent 40%
-        ),
-
-        #090a0d;
-}
-
-
-/* =====================================================
-   SUBTLE LIGHT
-===================================================== */
-
-body::after {
-
-    content: "";
-
-    position: fixed;
-
-    width: 650px;
-    height: 650px;
-
-    top: -300px;
-    right: -250px;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(112, 151, 170, 0.14),
-            transparent 65%
-        );
-
-    filter: blur(30px);
-
-    z-index: -4;
-
-    pointer-events: none;
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero {
-
-    width: calc(100% - 80px);
-
-    max-width: 1450px;
-
-    min-height: 92vh;
-
-    margin: 40px auto 0;
-
-    position: relative;
-
-    overflow: hidden;
-
-    border-radius: 30px;
-
-    border:
-        1px solid rgba(255,255,255,0.10);
-
-    background:
-
-        radial-gradient(
-            ellipse at 80% 15%,
-            rgba(118, 157, 177, 0.27),
-            transparent 27%
-        ),
-
-        radial-gradient(
-            ellipse at 65% 55%,
-            rgba(49, 76, 94, 0.36),
-            transparent 42%
-        ),
-
-        linear-gradient(
-            135deg,
-            #0a0918 0%,
-            #101222 45%,
-            #071017 100%
-        );
-
-    box-shadow:
-
-        0 35px 100px
-        rgba(0,0,0,0.45),
-
-        inset 0 1px 0
-        rgba(255,255,255,0.06);
-
-}
-
-
-/* =====================================================
-   HERO ATMOSPHERIC LIGHT
-===================================================== */
-
-.hero::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 750px;
-    height: 750px;
-
-    right: -180px;
-    top: -310px;
-
-    border-radius: 50%;
-
-    background:
-
-        radial-gradient(
-            circle,
-            rgba(145,180,195,0.22),
-            rgba(87,123,141,0.10) 30%,
-            transparent 65%
-        );
-
-    filter: blur(18px);
-
-    pointer-events: none;
-
-}
-
-
-/* =====================================================
-   DIAGONAL LIGHT
-===================================================== */
-
-.hero::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 850px;
-    height: 170px;
-
-    right: -160px;
-    top: 80px;
-
-    transform:
-        rotate(-27deg);
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(170,205,220,0.12),
-            transparent
-        );
-
-    filter: blur(25px);
-
-    pointer-events: none;
-
-}
-
-
-/* =====================================================
-   NAVIGATION
-===================================================== */
-
-.navbar {
-
-    position: relative;
-
-    z-index: 5;
-
-    height: 90px;
-
-    padding:
-        0 38px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-}
-
-
-/* =====================================================
-   BRAND
-===================================================== */
-
-.brand {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 9px;
-
-    color: rgba(255,255,255,0.85);
-
-    font-size: 10px;
-
-    font-weight: 500;
-
-    letter-spacing: 1.5px;
-
-    text-transform: uppercase;
-
-}
-
-.brand-mark {
-
-    width: 8px;
-    height: 8px;
-
-    border:
-        1px solid rgba(255,255,255,0.75);
-
-    border-radius: 50%;
-
-}
-
-
-/* =====================================================
-   NAV LINKS
-===================================================== */
-
-.nav-links {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 28px;
-
-}
-
-.nav-links a {
-
-    color:
-        rgba(255,255,255,0.55);
-
-    text-decoration: none;
-
-    font-size: 8px;
-
-    letter-spacing: 0.8px;
-
-    text-transform: uppercase;
-
-    transition:
-        color 0.25s ease;
-
-}
-
-.nav-links a:hover {
-
-    color: white;
-
-}
-
-
-/* =====================================================
-   ABOUT BUTTON
-===================================================== */
-
-.about-button {
-
-    padding:
-        8px 15px;
-
-    border-radius: 50px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.28);
-
-    background:
-        rgba(255,255,255,0.035);
-
-    color: rgba(255,255,255,0.85) !important;
-
-    backdrop-filter: blur(10px);
-
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease;
-
-}
-
-.about-button:hover {
-
-    background:
-        rgba(255,255,255,0.10);
-
-    border-color:
-        rgba(255,255,255,0.50);
-
-    transform:
-        translateY(-1px);
-
-}
-
-
-/* =====================================================
-   HERO CONTENT
-===================================================== */
-
-.hero-content {
-
-    position: relative;
-
-    z-index: 2;
-
-    min-height:
-        calc(92vh - 90px);
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    padding:
-        30px 8% 100px;
-
-}
-
-
-/* =====================================================
-   EYEBROW
-===================================================== */
-
-.eyebrow {
-
-    color:
-        rgba(188,207,217,0.70);
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    margin-bottom: 20px;
-
-}
-
-
-/* =====================================================
-   WELCOME
-===================================================== */
-
-.hero h1 {
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size:
-        clamp(58px, 8vw, 108px);
-
-    line-height:
-        0.92;
-
-    font-weight: 400;
-
-    letter-spacing:
-        7px;
-
-    color:
-        #f2f3f1;
-
-    margin-bottom: 28px;
-
-}
-
-
-/* =====================================================
-   DESCRIPTION
-===================================================== */
-
-.hero-description {
-
-    width: 100%;
-
-    max-width: 510px;
-
-    color:
-        rgba(218,224,226,0.62);
-
-    font-size: 12px;
-
-    line-height: 1.9;
-
-    letter-spacing: 0.15px;
-
-}
-
-
-/* =====================================================
-   SMALL LINE
-===================================================== */
-
-.hero-line {
-
-    width: 42px;
-
-    height: 1px;
-
-    margin:
-        25px 0 0;
-
-    background:
-        rgba(255,255,255,0.45);
-
-}
-
-
-/* =====================================================
-   SCROLL INDICATOR
-===================================================== */
-
-.scroll-indicator {
-
-    position: absolute;
-
-    left: 8%;
-
-    bottom: 38px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    color:
-        rgba(255,255,255,0.38);
-
-    font-size: 8px;
-
-    letter-spacing: 2px;
-
-    text-transform: uppercase;
-
-}
-
-.scroll-line {
-
-    width: 34px;
-
-    height: 1px;
-
-    background:
-        rgba(255,255,255,0.30);
-
-}
-
-
-/* =====================================================
-   MODULE SECTION
-===================================================== */
-
-.modules {
-
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    padding:
-        130px 30px 120px;
-
-}
-
-
-/* =====================================================
-   SECTION HEADER
-===================================================== */
-
-.section-header {
-
-    display: flex;
-
-    align-items: flex-end;
-
-    justify-content: space-between;
-
-    margin-bottom: 42px;
-
-}
-
-.section-label {
-
-    color:
-        #77838a;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    text-transform: uppercase;
-
-    margin-bottom: 12px;
-
-}
-
-.section-title {
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size: 42px;
-
-    font-weight: 400;
-
-    color:
-        #e9e9e6;
-
-}
-
-.section-count {
-
-    color:
-        #596268;
-
-    font-size: 10px;
-
-    letter-spacing: 1.5px;
-
-}
-
-
-/* =====================================================
-   CARD GRID
-===================================================== */
-
-.card-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap: 16px;
-
-}
-
-
-/* =====================================================
-   GLASS CARD
-===================================================== */
-
-.module-card {
-
-    min-height: 220px;
-
-    padding: 28px;
-
-    position: relative;
-
-    overflow: hidden;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: space-between;
-
-    border-radius: 22px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.10);
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.075),
-            rgba(255,255,255,0.025)
-        );
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
-
-    box-shadow:
-
-        inset 0 1px 0
-        rgba(255,255,255,0.07),
-
-        0 20px 50px
-        rgba(0,0,0,0.18);
-
-    transition:
-        transform 0.35s ease,
-        border-color 0.35s ease,
-        background 0.35s ease;
-
-}
-
-
-/* =====================================================
-   CARD HOVER
-===================================================== */
-
-.module-card:hover {
-
-    transform:
-        translateY(-7px);
-
-    border-color:
-        rgba(255,255,255,0.20);
-
-    background:
-
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,0.10),
-            rgba(255,255,255,0.035)
-        );
-
-}
-
-
-/* =====================================================
-   LARGE CARD
-===================================================== */
-
-.module-card:first-child {
-
-    grid-column:
-        span 2;
-
-    min-height:
-        190px;
-
-}
-
-
-/* =====================================================
-   CARD TOP
-===================================================== */
-
-.card-top {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-}
-
-
-/* =====================================================
-   CARD NUMBER
-===================================================== */
-
-.card-number {
-
-    color:
-        rgba(255,255,255,0.35);
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-}
-
-
-/* =====================================================
-   CARD SYMBOL
-===================================================== */
-
-.card-symbol {
-
-    width: 40px;
-    height: 40px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border-radius: 12px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.10);
-
-    background:
-        rgba(255,255,255,0.045);
-
-    color:
-        rgba(220,230,235,0.80);
-
-    font-size: 14px;
-
-}
-
-
-/* =====================================================
-   CARD BOTTOM
-===================================================== */
-
-.card-bottom {
-
-    display: flex;
-
-    align-items: flex-end;
-
-    justify-content: space-between;
-
-    gap: 20px;
-
-}
-
-
-/* =====================================================
-   CARD TITLE
-===================================================== */
-
-.card-title {
-
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    color:
-        #e9ebea;
-
-    font-size: 25px;
-
-    font-weight: 400;
-
-    margin-bottom: 8px;
-
-}
-
-
-/* =====================================================
-   CARD DESCRIPTION
-===================================================== */
-
-.card-description {
-
-    max-width: 390px;
-
-    color:
-        rgba(198,207,211,0.52);
-
-    font-size: 11px;
-
-    line-height: 1.7;
-
-}
-
-
-/* =====================================================
-   CARD ARROW
-===================================================== */
-
-.card-arrow {
-
-    flex-shrink: 0;
-
-    width: 38px;
-    height: 38px;
-
-    border-radius: 50%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.12);
-
-    color:
-        rgba(255,255,255,0.55);
-
-    font-size: 16px;
-
-    transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        color 0.3s ease;
-
-}
-
-.module-card:hover .card-arrow {
-
-    transform:
-        translateX(4px);
-
-    background:
-        rgba(255,255,255,0.10);
-
-    color: white;
-
-}
-
-
-/* =====================================================
-   CARD LINKS
-===================================================== */
-
-.module-card a {
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 5;
-
-}
-
-
-/* =====================================================
-   BOTTOM FOOTER
-===================================================== */
-
-.bottom {
-
-    max-width: 1100px;
-
-    margin: 0 auto;
-
-    padding:
-        0 30px 40px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    color:
-        #4f595e;
-
-    font-size: 9px;
-
-    letter-spacing: 1.5px;
-
-    text-transform: uppercase;
-
-}
-
-
-/* =====================================================
-   REVEAL ANIMATION
-===================================================== */
-
-.reveal {
-
-    opacity: 0;
-
-    transform:
-        translateY(35px);
-
-    transition:
-        opacity 0.7s ease,
-        transform 0.7s ease;
-
-}
-
-.reveal.visible {
-
-    opacity: 1;
-
-    transform:
-        translateY(0);
-
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 800px) {
-
-    .hero {
-
-        width:
-            calc(100% - 30px);
-
-        margin-top: 15px;
-
-        min-height:
-            88vh;
-
-        border-radius: 23px;
-
-    }
-
-    .navbar {
-
-        padding:
-            0 23px;
-
-    }
-
-    .nav-links {
-
-        gap: 14px;
-
-    }
-
-    .nav-links a:not(.about-button) {
-
-        display: none;
-
-    }
-
-    .hero-content {
-
-        padding:
-            30px 8% 90px;
-
-    }
-
-    .hero h1 {
-
-        font-size:
-            clamp(50px, 14vw, 80px);
-
-        letter-spacing:
-            4px;
-
-    }
-
-    .card-grid {
-
-        grid-template-columns:
-            1fr;
-
-    }
-
-    .module-card:first-child {
-
-        grid-column:
-            span 1;
-
-    }
-
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 500px) {
-
-    .hero {
-
-        width:
-            calc(100% - 20px);
-
-        min-height:
-            90vh;
-
-    }
-
-    .navbar {
-
-        height: 75px;
-
-        padding:
-            0 20px;
-
-    }
-
-    .brand {
-
-        font-size: 9px;
-
-    }
-
-    .about-button {
-
-        padding:
-            7px 12px;
-
-        font-size: 8px !important;
-
-    }
-
-    .hero-content {
-
-        padding:
-            20px 25px 80px;
-
-    }
-
-    .eyebrow {
-
-        font-size: 8px;
-
-    }
-
-    .hero h1 {
-
-        font-size:
-            52px;
-
-        letter-spacing:
-            3px;
-
-        margin-bottom:
-            24px;
-
-    }
-
-    .hero-description {
-
-        font-size:
-            11px;
-
-        line-height:
-            1.8;
-
-    }
-
-    .scroll-indicator {
-
-        left: 25px;
-
-        bottom: 28px;
-
-    }
-
-    .modules {
-
-        padding:
-            90px 18px;
-
-    }
-
-    .section-header {
-
-        align-items:
-            flex-start;
-
-        flex-direction:
-            column;
-
-        gap: 10px;
-
-    }
-
-    .section-title {
-
-        font-size:
-            35px;
-
-    }
-
-    .module-card {
-
-        min-height:
-            205px;
-
-        padding:
-            23px;
-
-    }
-
-    .card-title {
-
-        font-size:
-            22px;
-
-    }
-
-    .card-description {
-
-        font-size:
-            10px;
-
-    }
-
-    .bottom {
-
-        padding:
-            0 20px 30px;
-
-        flex-direction:
-            column;
-
-        gap: 8px;
-
-    }
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABTECH | Logic Gate Project</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================================================
+           RESET & BASE STYLES
+        ===================================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Vibrant multi-color professional palette */
+            --color-emerald: #059669;
+            --color-violet: #7c3aed;
+            --color-blue: #2563eb;
+            --color-amber: #d97706;
+            --color-magenta: #db2777;
+            
+            --bg-base: #f4f7fc;
+            --text-main: #0f172a;
+            --text-muted: #4b5563;
+            
+            --font-display: "Cinzel", Georgia, serif;
+            --font-sans: "Plus Jakarta Sans", "Segoe UI", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            background: var(--bg-base);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* =====================================================
+           MULTICOLOR AMBIENT LIGHT ORBS BEHIND GLASS
+        ===================================================== */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -5;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.22), transparent 45%),
+                radial-gradient(circle at 85% 15%, rgba(124, 58, 237, 0.2), transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(37, 99, 235, 0.2), transparent 50%),
+                radial-gradient(circle at 20% 75%, rgba(236, 72, 153, 0.18), transparent 45%),
+                radial-gradient(circle at 80% 70%, rgba(217, 119, 6, 0.16), transparent 45%),
+                linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        /* Floating glowing background orbs */
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -4;
+            pointer-events: none;
+            opacity: 0.7;
+            animation: floatOrb 18s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 450px;
+            height: 450px;
+            top: -100px;
+            left: -100px;
+            background: rgba(124, 58, 237, 0.3);
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -150px;
+            right: -100px;
+            background: rgba(5, 150, 105, 0.25);
+            animation-delay: -4s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            top: 40%;
+            left: 35%;
+            background: rgba(37, 99, 235, 0.2);
+            animation-delay: -8s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1) rotate(0deg); }
+            100% { transform: translateY(40px) scale(1.1) rotate(15deg); }
+        }
+
+        /* =====================================================
+           HERO SECTION WITH ULTRA-TRANSPARENT GLASS
+        ===================================================== */
+        .hero {
+            width: calc(100% - 48px);
+            max-width: 1420px;
+            min-height: 90vh;
+            margin: 24px auto 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            box-shadow: 
+                0 30px 70px rgba(15, 23, 42, 0.08),
+                inset 0 1px 3px rgba(255, 255, 255, 0.9);
+        }
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+        .navbar {
+            position: relative;
+            z-index: 5;
+            height: 100px;
+            padding: 0 50px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--text-main);
+            font-family: var(--font-display);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .brand-mark {
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--color-emerald), var(--color-blue));
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(5, 150, 105, 0.6);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-emerald);
+        }
+
+        .about-button {
+            padding: 12px 26px;
+            border-radius: 50px;
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            background: rgba(124, 58, 237, 0.1);
+            color: #6d28d9 !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            font-weight: 700 !important;
+            letter-spacing: 1.5px !important;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.15);
+        }
+
+        .about-button:hover {
+            background: rgba(124, 58, 237, 0.22);
+            border-color: var(--color-magenta);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(219, 39, 119, 0.25);
+            color: #581c87 !important;
+        }
+
+        /* =====================================================
+           HERO CONTENT
+        ===================================================== */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            min-height: calc(90vh - 100px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px 8% 100px;
+        }
+
+        .eyebrow {
+            background: linear-gradient(90deg, var(--color-emerald), var(--color-blue), var(--color-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(56px, 8.5vw, 110px);
+            line-height: 0.95;
+            font-weight: 700;
+            letter-spacing: 6px;
+            background: linear-gradient(135deg, #0f172a 20%, #334155 50%, #7c3aed 80%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 32px;
+        }
+
+        .hero-description {
+            width: 100%;
+            max-width: 560px;
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.9;
+            letter-spacing: 0.3px;
+            font-weight: 500;
+        }
+
+        .hero-line {
+            width: 70px;
+            height: 2px;
+            margin: 35px 0 0;
+            background: linear-gradient(90deg, var(--color-emerald), var(--color-violet), var(--color-magenta));
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            left: 8%;
+            bottom: 45px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .scroll-line {
+            width: 45px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--color-violet), transparent);
+        }
+
+        /* =====================================================
+           MODULES SECTION
+        ===================================================== */
+        .modules {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 150px 30px 130px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 55px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 28px;
+        }
+
+        .section-label {
+            background: linear-gradient(90deg, var(--color-amber), var(--color-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 46px;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 1.5px;
+        }
+
+        .section-count {
+            color: var(--text-muted);
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           CARD GRID & ULTRA-TRANSPARENT FROSTED GLASS CARDS
+        ===================================================== */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .module-card {
+            min-height: 270px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.32);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 
+                inset 0 1px 3px rgba(255, 255, 255, 0.9), 
+                0 20px 45px rgba(15, 23, 42, 0.06);
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .module-card:nth-child(1) { --card-accent: var(--color-blue); --card-glow: rgba(37, 99, 235, 0.18); }
+        .module-card:nth-child(2) { --card-accent: var(--color-emerald); --card-glow: rgba(5, 150, 105, 0.18); }
+        .module-card:nth-child(3) { --card-accent: var(--color-amber); --card-glow: rgba(217, 119, 6, 0.18); }
+        .module-card:nth-child(4) { --card-accent: var(--color-magenta); --card-glow: rgba(219, 39, 119, 0.18); }
+
+        .module-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--card-accent);
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 
+                inset 0 1px 4px rgba(255, 255, 255, 0.95), 
+                0 30px 60px var(--card-glow);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-number {
+            color: var(--text-muted);
+            font-size: 12px;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .card-symbol {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--card-accent);
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+        }
+
+        .module-card:hover .card-symbol {
+            border-color: var(--card-accent);
+            background: var(--card-accent);
+            box-shadow: 0 0 20px var(--card-accent);
+            transform: scale(1.08);
+            color: #ffffff;
+        }
+
+        .card-bottom {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .card-title {
+            font-family: var(--font-display);
+            color: var(--text-main);
+            font-size: 30px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.8px;
+        }
+
+        .card-description {
+            max-width: 430px;
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .card-arrow {
+            flex-shrink: 0;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            color: var(--text-muted);
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .module-card:hover .card-arrow {
+            transform: translateX(6px);
+            background: var(--card-accent);
+            border-color: transparent;
+            color: #ffffff;
+            box-shadow: 0 0 20px var(--card-accent);
+        }
+
+        .module-card a {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+        .bottom {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 35px 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           REVEAL ANIMATIONS
+        ===================================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================
+           RESPONSIVE MEDIA QUERIES
+        ===================================================== */
+        @media (max-width: 950px) {
+            .hero {
+                width: calc(100% - 24px);
+                margin-top: 12px;
+                min-height: 85vh;
+                border-radius: 24px;
+            }
+
+            .navbar {
+                padding: 0 25px;
+                height: 85px;
+            }
+
+            .nav-links {
+                gap: 18px;
+            }
+
+            .hero-content {
+                padding: 20px 8% 85px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 48px;
+                letter-spacing: 3px;
+            }
+
+            .navbar {
+                height: 75px;
+                padding: 0 20px;
+            }
+
+            .about-button {
+                padding: 9px 18px;
+                font-size: 11px !important;
+            }
+
+            .modules {
+                padding: 100px 20px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .module-card {
+                min-height: 240px;
+                padding: 28px;
+            }
+
+            .card-title {
+                font-size: 26px;
+            }
+
+            .bottom {
+                flex-direction: column;
+                gap: 12px;
+                padding: 35px 20px;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
+    <!-- Ambient Floating Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+    <section class="hero">
+        <nav class="navbar">
+            <div class="brand">
+                <span class="brand-mark"></span>
+                ABTECH
+            </div>
 
-<section class="hero">
+            <div class="nav-links">
+                <a href="#modules">Modules</a>
+                <a href="index2.html" class="about-button">ABOUT US</a>
+            </div>
+        </nav>
 
+        <div class="hero-content">
+            <div class="eyebrow">
+                ABTECH · DIGITAL LOGIC PROJECT
+            </div>
 
-    <!-- NAVIGATION -->
+            <h1>
+                WELCOME
+            </h1>
 
-    <nav class="navbar">
+            <p class="hero-description">
+                ABTECH is a technology-focused academic project
+                created to make digital logic easier to understand,
+                explore and apply. Our platform brings together
+                logic gates, binary arithmetic, complements and
+                adder circuits in one extraordinary interactive experience.
+            </p>
 
-
-        <div class="brand">
-
-            <span class="brand-mark"></span>
-
-            ABTECH
-
+            <div class="hero-line"></div>
         </div>
 
+        <div class="scroll-indicator">
+            <span class="scroll-line"></span>
+            SCROLL TO EXPLORE
+        </div>
+    </section>
 
-        <div class="nav-links">
-
-            <a href="#modules">
-                Modules
-            </a>
-
-            <a href="#modules">
-                Logic
-            </a>
-
-            <a href="index2.html"
-               class="about-button">
-
-                ABOUT US
-
-            </a>
-
+    <section class="modules" id="modules">
+        <div class="section-header reveal">
+            <div>
+                <div class="section-label">
+                    Explore the project
+                </div>
+                <h2 class="section-title">
+                    Modules
+                </h2>
+            </div>
+            <div class="section-count">
+                04 MODULES
+            </div>
         </div>
 
+        <div class="card-grid">
+            <!-- LOGIC GATES -->
+            <div class="module-card reveal">
+                <a href="index3.html" aria-label="Logic Gates Module"></a>
+                <div class="card-top">
+                    <span class="card-number">
+                        01 / LOGIC
+                    </span>
+                    <div class="card-symbol">
+                        ◇
+                    </div>
+                </div>
 
-    </nav>
+                <div class="card-bottom">
+                    <div>
+                        <div class="card-title">
+                            Logic Gates
+                        </div>
+                        <div class="card-description">
+                            Explore AND, OR, NOT, NAND,
+                            NOR, XOR and XNOR operations.
+                        </div>
+                    </div>
+                    <div class="card-arrow">
+                        →
+                    </div>
+                </div>
+            </div>
 
+            <!-- BINARY ARITHMETIC -->
+            <div class="module-card reveal">
+                <a href="index4.html" aria-label="Binary Arithmetic Module"></a>
+                <div class="card-top">
+                    <span class="card-number">
+                        02 / BINARY
+                    </span>
+                    <div class="card-symbol">
+                        01
+                    </div>
+                </div>
 
-    <!-- HERO CONTENT -->
+                <div class="card-bottom">
+                    <div>
+                        <div class="card-title">
+                            Binary Arithmetic
+                        </div>
+                        <div class="card-description">
+                            Learn how numbers are represented
+                            and calculated using binary systems.
+                        </div>
+                    </div>
+                    <div class="card-arrow">
+                        →
+                    </div>
+                </div>
+            </div>
 
-    <div class="hero-content">
+            <!-- COMPLEMENTS -->
+            <div class="module-card reveal">
+                <a href="index5.html" aria-label="Complements Module"></a>
+                <div class="card-top">
+                    <span class="card-number">
+                        03 / COMPLEMENTS
+                    </span>
+                    <div class="card-symbol">
+                        ↻
+                    </div>
+                </div>
 
+                <div class="card-bottom">
+                    <div>
+                        <div class="card-title">
+                            Complements
+                        </div>
+                        <div class="card-description">
+                            Understand one's complement,
+                            two's complement and signed values.
+                        </div>
+                    </div>
+                    <div class="card-arrow">
+                        →
+                    </div>
+                </div>
+            </div>
 
-        <div class="eyebrow">
+            <!-- ADDERS / CIRCUITS -->
+            <div class="module-card reveal">
+                <a href="index6.html" aria-label="Adders Module"></a>
+                <div class="card-top">
+                    <span class="card-number">
+                        04 / CIRCUITS
+                    </span>
+                    <div class="card-symbol">
+                        +
+                    </div>
+                </div>
 
-            ABTECH · DIGITAL LOGIC PROJECT
-
+                <div class="card-bottom">
+                    <div>
+                        <div class="card-title">
+                            Adders
+                        </div>
+                        <div class="card-description">
+                            Study half adders, full adders,
+                            carry logic and binary addition.
+                        </div>
+                    </div>
+                    <div class="card-arrow">
+                        →
+                    </div>
+                </div>
+            </div>
         </div>
-
-
-        <h1>
-            WELCOME
-        </h1>
-
-
-        <p class="hero-description">
-
-            ABTECH is a technology-focused academic project
-            created to make digital logic easier to understand,
-            explore and apply. Our platform brings together
-            logic gates, binary arithmetic, complements and
-            adder circuits in one simple interactive experience.
-
-        </p>
-
-
-        <div class="hero-line"></div>
-
-
-    </div>
-
-
-    <!-- SCROLL -->
-
-    <div class="scroll-indicator">
-
-        <span class="scroll-line"></span>
-
-        SCROLL TO EXPLORE
-
-    </div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-     MODULES
-===================================================== -->
-
-<section
-    class="modules"
-    id="modules"
->
-
-
-    <div class="section-header reveal">
-
-
-        <div>
-
-            <div class="section-label">
-                Explore the project
-            </div>
-
-            <h2 class="section-title">
-                Modules
-            </h2>
-
-        </div>
-
-
-        <div class="section-count">
-
-            05 MODULES
-
-        </div>
-
-
-    </div>
-
-
-
-    <div class="card-grid">
-
-
-        <!-- ABOUT -->
-
-        <div class="module-card reveal">
-
-            <a href="index2.html"></a>
-
-            <div class="card-top">
-
-                <span class="card-number">
-                    01 / ABOUT
-                </span>
-
-                <div class="card-symbol">
-                    ○
-                </div>
-
-            </div>
-
-
-            <div class="card-bottom">
-
-                <div>
-
-                    <div class="card-title">
-                        About Us
-                    </div>
-
-                    <div class="card-description">
-
-                        Discover the purpose, vision and
-                        people behind the ABTECH technology
-                        project.
-
-                    </div>
-
-                </div>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- LOGIC GATES -->
-
-        <div class="module-card reveal">
-
-            <a href="index3.html"></a>
-
-            <div class="card-top">
-
-                <span class="card-number">
-                    02 / LOGIC
-                </span>
-
-                <div class="card-symbol">
-                    ◇
-                </div>
-
-            </div>
-
-
-            <div class="card-bottom">
-
-                <div>
-
-                    <div class="card-title">
-                        Logic Gates
-                    </div>
-
-                    <div class="card-description">
-
-                        Explore AND, OR, NOT, NAND,
-                        NOR, XOR and XNOR operations.
-
-                    </div>
-
-                </div>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- BINARY -->
-
-        <div class="module-card reveal">
-
-            <a href="index4.html"></a>
-
-            <div class="card-top">
-
-                <span class="card-number">
-                    03 / BINARY
-                </span>
-
-                <div class="card-symbol">
-                    01
-                </div>
-
-            </div>
-
-
-            <div class="card-bottom">
-
-                <div>
-
-                    <div class="card-title">
-                        Binary Arithmetic
-                    </div>
-
-                    <div class="card-description">
-
-                        Learn how numbers are represented
-                        and calculated using binary systems.
-
-                    </div>
-
-                </div>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- COMPLEMENTS -->
-
-        <div class="module-card reveal">
-
-            <a href="index5.html"></a>
-
-            <div class="card-top">
-
-                <span class="card-number">
-                    04 / COMPLEMENTS
-                </span>
-
-                <div class="card-symbol">
-                    ↻
-                </div>
-
-            </div>
-
-
-            <div class="card-bottom">
-
-                <div>
-
-                    <div class="card-title">
-                        Complements
-                    </div>
-
-                    <div class="card-description">
-
-                        Understand one's complement,
-                        two's complement and signed values.
-
-                    </div>
-
-                </div>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- ADDERS -->
-
-        <div class="module-card reveal">
-
-            <a href="index6.html"></a>
-
-            <div class="card-top">
-
-                <span class="card-number">
-                    05 / CIRCUITS
-                </span>
-
-                <div class="card-symbol">
-                    +
-                </div>
-
-            </div>
-
-
-            <div class="card-bottom">
-
-                <div>
-
-                    <div class="card-title">
-                        Adders
-                    </div>
-
-                    <div class="card-description">
-
-                        Study half adders, full adders,
-                        carry logic and binary addition.
-
-                    </div>
-
-                </div>
-
-                <div class="card-arrow">
-                    →
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer class="bottom">
-
-    <span>
-        ABTECH TECHNOLOGY PROJECT
-    </span>
-
-    <span>
-        DIGITAL LOGIC · 2026
-    </span>
-
-</footer>
-
-
-
-<script>
-
-/* =====================================================
-   SCROLL REVEAL
-===================================================== */
-
-const revealElements =
-    document.querySelectorAll(".reveal");
-
-
-const observer =
-    new IntersectionObserver(
-
-        (entries) => {
-
-            entries.forEach(
-                (entry) => {
-
-                    if (
-                        entry.isIntersecting
-                    ) {
-
-                        entry.target
-                            .classList
-                            .add("visible");
-
+    </section>
+
+    <footer class="bottom reveal">
+        <span>
+            ABTECH TECHNOLOGY PROJECT
+        </span>
+        <span>
+            DIGITAL LOGIC · 2026
+        </span>
+    </footer>
+
+    <script>
+        /* =====================================================
+           SCROLL REVEAL INTERSECTION OBSERVER
+        ===================================================== */
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
                     }
+                });
+            },
+            {
+                threshold: 0.1
+            }
+        );
 
-                }
-            );
-
-        },
-
-        {
-            threshold: 0.12
-        }
-
-    );
-
-
-revealElements.forEach(
-    element => observer.observe(element)
-);
-
-</script>
-
-
+        revealElements.forEach(element => observer.observe(element));
+    </script>
 </body>
 
 </html>
