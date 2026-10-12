@@ -2,16 +2,38 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ABTECH - Welcome</title>
+    <title>ABTECH | Welcome</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-
-        * {
+        /* =====================================================
+            RESET & BASE STYLES
+        ===================================================== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
+        }
+
+        :root {
+            --color-emerald: #059669;
+            --color-violet: #7c3aed;
+            --color-blue: #2563eb;
+            --color-amber: #d97706;
+            --color-magenta: #db2777;
+            
+            --bg-base: #f4f7fc;
+            --text-main: #0f172a;
+            --text-muted: #4b5563;
+            
+            --font-display: "Cinzel", Georgia, serif;
+            --font-sans: "Plus Jakarta Sans", "Segoe UI", sans-serif;
         }
 
         html {
@@ -19,580 +41,683 @@
         }
 
         body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f7fc;
-            color: #222;
+            font-family: var(--font-sans);
+            color: var(--text-main);
+            background: var(--bg-base);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* NAVBAR */
+        /* =====================================================
+            MULTICOLOR AMBIENT LIGHT ORBS BEHIND GLASS
+        ===================================================== */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -5;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.22), transparent 45%),
+                radial-gradient(circle at 85% 15%, rgba(124, 58, 237, 0.2), transparent 45%),
+                radial-gradient(circle at 50% 85%, rgba(37, 99, 235, 0.2), transparent 50%),
+                radial-gradient(circle at 20% 75%, rgba(236, 72, 153, 0.18), transparent 45%),
+                radial-gradient(circle at 80% 70%, rgba(217, 119, 6, 0.16), transparent 45%),
+                linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
 
+        .ambient-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -4;
+            pointer-events: none;
+            opacity: 0.7;
+            animation: floatOrb 18s ease-in-out infinite alternate;
+        }
+
+        .orb-1 {
+            width: 450px;
+            height: 450px;
+            top: -100px;
+            left: -100px;
+            background: rgba(124, 58, 237, 0.3);
+        }
+
+        .orb-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -150px;
+            right: -100px;
+            background: rgba(5, 150, 105, 0.25);
+            animation-delay: -4s;
+        }
+
+        .orb-3 {
+            width: 400px;
+            height: 400px;
+            top: 40%;
+            left: 35%;
+            background: rgba(37, 99, 235, 0.2);
+            animation-delay: -8s;
+        }
+
+        @keyframes floatOrb {
+            0% { transform: translateY(0) scale(1) rotate(0deg); }
+            100% { transform: translateY(40px) scale(1.1) rotate(15deg); }
+        }
+
+        /* =====================================================
+            HERO SECTION WITH ULTRA-TRANSPARENT GLASS
+        ===================================================== */
+        .hero {
+            width: calc(100% - 48px);
+            max-width: 1420px;
+            min-height: 90vh;
+            margin: 24px auto 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 36px;
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            background: rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            box-shadow: 
+                0 30px 70px rgba(15, 23, 42, 0.08),
+                inset 0 1px 3px rgba(255, 255, 255, 0.9);
+        }
+
+        /* =====================================================
+            NAVIGATION
+        ===================================================== */
         .navbar {
-            background: #0b1f3a;
-            color: white;
-            padding: 18px 8%;
+            position: relative;
+            z-index: 5;
+            height: 100px;
+            padding: 0 50px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
 
-        .logo {
-            font-size: 25px;
-            font-weight: bold;
-            color: #4da3ff;
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--text-main);
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .brand-mark {
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, var(--color-emerald), var(--color-blue));
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(5, 150, 105, 0.6);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
         }
 
         .nav-links a {
-            color: white;
+            color: var(--text-muted);
             text-decoration: none;
-            margin-left: 25px;
-            font-size: 15px;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #4da3ff;
+            color: var(--color-emerald);
         }
 
-        /* HERO */
-
-        .hero {
-            min-height: 500px;
-            padding: 80px 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #0b1f3a,
-                    #1357a6,
-                    #087f8c
-                );
-
-            color: white;
+        .about-button {
+            padding: 12px 26px;
+            border-radius: 50px;
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            background: rgba(124, 58, 237, 0.1);
+            color: #6d28d9 !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            font-weight: 700 !important;
+            letter-spacing: 1.5px !important;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.15);
         }
 
+        .about-button:hover {
+            background: rgba(124, 58, 237, 0.22);
+            border-color: var(--color-magenta);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(219, 39, 119, 0.25);
+            color: #581c87 !important;
+        }
+
+        /* =====================================================
+            HERO CONTENT
+        ===================================================== */
         .hero-content {
-            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            min-height: calc(90vh - 100px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px 8% 100px;
+        }
+
+        .eyebrow {
+            background: linear-gradient(90deg, var(--color-emerald), var(--color-blue), var(--color-violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            font-weight: 700;
         }
 
         .hero h1 {
-            font-size: 52px;
-            margin: 0 0 20px;
+            font-family: var(--font-display);
+            font-size: clamp(48px, 7.5vw, 95px);
+            line-height: 1.05;
+            font-weight: 700;
+            letter-spacing: 4px;
+            background: linear-gradient(135deg, #0f172a 20%, #334155 50%, #7c3aed 80%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 28px;
         }
 
         .hero h1 span {
-            color: #53e0ff;
+            color: var(--color-violet);
         }
 
-        .hero p {
-            font-size: 19px;
-            line-height: 1.7;
-            color: #e2efff;
+        .hero-description {
+            width: 100%;
+            max-width: 650px;
+            color: var(--text-muted);
+            font-size: 17px;
+            line-height: 1.8;
+            letter-spacing: 0.3px;
+            font-weight: 500;
         }
 
-        .hero-button {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 14px 28px;
-            background: white;
-            color: #1357a6;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: 0.3s;
+        .hero-line {
+            width: 70px;
+            height: 2px;
+            margin: 35px 0 0;
+            background: linear-gradient(90deg, var(--color-emerald), var(--color-violet), var(--color-magenta));
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
         }
 
-        .hero-button:hover {
-            transform: translateY(-3px);
-            background: #53e0ff;
-            color: #08203b;
+        .scroll-indicator {
+            position: absolute;
+            left: 8%;
+            bottom: 45px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
         }
 
-        /* ABOUT */
+        .scroll-line {
+            width: 45px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--color-violet), transparent);
+        }
 
-        .about {
-            padding: 70px 20px;
-            text-align: center;
-            background: white;
+        /* =====================================================
+            SECTIONS & CARDS
+        ===================================================== */
+        .content-section {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 120px 30px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 55px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding-bottom: 28px;
+        }
+
+        .section-label {
+            background: linear-gradient(90deg, var(--color-amber), var(--color-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 11px;
+            letter-spacing: 3.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
 
         .section-title {
-            color: #1357a6;
-            font-size: 34px;
-            margin-bottom: 12px;
+            font-family: var(--font-display);
+            font-size: 42px;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 1.5px;
         }
 
-        .line {
-            width: 70px;
-            height: 4px;
-            background: #19a7ce;
-            margin: 0 auto 25px;
-            border-radius: 10px;
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
         }
 
-        .about-text {
-            max-width: 800px;
-            margin: auto;
-            color: #606b7a;
-            line-height: 1.8;
-            font-size: 17px;
-        }
-
-        /* EMPLOYEES */
-
-        .team {
-            padding: 70px 20px;
-            background: #f4f7fc;
-            text-align: center;
-        }
-
-        .team-container {
-            max-width: 1000px;
-            margin: 40px auto 0;
-
+        .glass-card {
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
             display: flex;
-            justify-content: center;
-            gap: 25px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: space-between;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.32);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            box-shadow: 
+                inset 0 1px 3px rgba(255, 255, 255, 0.9), 
+                0 20px 45px rgba(15, 23, 42, 0.06);
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .employee {
-            width: 270px;
-            background: white;
-            padding: 30px 20px;
-            border-radius: 15px;
-
-            box-shadow:
-                0 8px 25px rgba(20,50,90,0.10);
-
-            transition: 0.3s;
-        }
-
-        .employee:hover {
+        .glass-card:hover {
             transform: translateY(-8px);
+            border-color: var(--card-accent, var(--color-violet));
+            background: rgba(255, 255, 255, 0.55);
+            box-shadow: 
+                inset 0 1px 4px rgba(255, 255, 255, 0.95), 
+                0 30px 60px rgba(124, 58, 237, 0.18);
+        }
 
-            box-shadow:
-                0 15px 35px rgba(20,50,90,0.18);
+        .glass-card h3 {
+            font-family: var(--font-display);
+            color: var(--text-main);
+            font-size: 24px;
+            font-weight: 600;
+            margin: 18px 0 10px;
+            letter-spacing: 0.8px;
+        }
+
+        .glass-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-violet), var(--color-blue));
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+        }
+
+        /* =====================================================
+            TEAM SECTION GRID
+        ===================================================== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .employee-card {
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(15, 23, 42, 0.06);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .employee-card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--color-blue);
+            box-shadow: 0 30px 60px rgba(37, 99, 235, 0.15);
         }
 
         .employee-icon {
-            width: 70px;
-            height: 70px;
-            margin: auto;
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 20px;
             border-radius: 50%;
-
             display: flex;
             justify-content: center;
             align-items: center;
-
-            background: linear-gradient(
-                135deg,
-                #1357a6,
-                #19a7ce
-            );
-
+            background: linear-gradient(135deg, var(--color-blue), var(--color-emerald));
             color: white;
-            font-size: 25px;
+            font-size: 22px;
             font-weight: bold;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
         }
 
-        .employee h3 {
-            margin: 18px 0 8px;
-            color: #17365d;
+        .employee-card h3 {
+            font-family: var(--font-display);
+            color: var(--text-main);
+            font-size: 22px;
+            margin-bottom: 6px;
         }
 
-        .employee .role {
-            color: #1687b0;
-            font-weight: bold;
+        .role {
+            color: var(--color-blue);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .employee-card p {
+            color: var(--text-muted);
             font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
-
-        .employee p {
-            color: #77808e;
-            font-size: 14px;
-            line-height: 1.5;
-        }
-
-        /* LINKEDIN BUTTON */
 
         .linkedin-button {
             display: inline-block;
-            margin-top: 12px;
-            padding: 9px 18px;
-
+            padding: 10px 22px;
             background: #0a66c2;
             color: white;
-
             text-decoration: none;
-            border-radius: 6px;
-
-            font-size: 14px;
-            font-weight: bold;
-
-            transition: 0.3s;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(10, 102, 194, 0.25);
         }
 
         .linkedin-button:hover {
             background: #004182;
             transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(10,102,194,0.25);
+            box-shadow: 0 6px 20px rgba(10, 102, 194, 0.35);
         }
 
-        /* VALUES */
-
-        .values {
-            padding: 65px 20px;
-            text-align: center;
-            background: #0b1f3a;
-            color: white;
-        }
-
-        .values .section-title {
-            color: white;
-        }
-
-        .value-container {
-            max-width: 900px;
-            margin: 35px auto 0;
-
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .value {
-            width: 250px;
-            padding: 25px;
-            background: #132e50;
-            border: 1px solid #29486c;
-            border-radius: 12px;
-        }
-
-        .value h3 {
-            color: #53e0ff;
-        }
-
-        .value p {
-            color: #bdcce0;
-            line-height: 1.5;
-        }
-
-        /* FOOTER */
-
+        /* =====================================================
+            FOOTER
+        ===================================================== */
         footer {
-            background: #061426;
-            color: #8295ad;
-            text-align: center;
-            padding: 22px;
-            font-size: 14px;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 40px 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            font-weight: 700;
         }
 
         footer strong {
-            color: #53e0ff;
+            color: var(--color-violet);
         }
 
-        /* MOBILE */
-
-        @media (max-width: 700px) {
+        /* =====================================================
+            RESPONSIVE MEDIA QUERIES
+        ===================================================== */
+        @media (max-width: 950px) {
+            .hero {
+                width: calc(100% - 24px);
+                margin-top: 12px;
+                min-height: 85vh;
+                border-radius: 24px;
+            }
 
             .navbar {
-                padding: 15px 5%;
-                flex-direction: column;
-                gap: 12px;
+                padding: 0 25px;
+                height: 85px;
             }
 
-            .nav-links a {
-                margin: 0 8px;
+            .nav-links {
+                gap: 18px;
             }
 
-            .hero {
-                min-height: 450px;
+            .hero-content {
+                padding: 20px 8% 85px;
             }
-
-            .hero h1 {
-                font-size: 38px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
         }
 
-    </style>
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 42px;
+                letter-spacing: 2px;
+            }
 
+            .navbar {
+                height: 75px;
+                padding: 0 20px;
+            }
+
+            .about-button {
+                padding: 9px 18px;
+                font-size: 11px !important;
+            }
+
+            .content-section {
+                padding: 80px 20px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                padding: 30px 20px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-
-    <!-- NAVIGATION -->
-
-    <nav class="navbar">
-
-        <div class="logo">
-            ABTECH
-        </div>
-
-        <div class="nav-links">
-
-            <a href="#home">Home</a>
-
-            <a href="#about">About Us</a>
-
-            <a href="#team">Team</a>
-
-        </div>
-
-    </nav>
-
+    <!-- Ambient Floating Orbs -->
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
 
     <!-- HERO SECTION -->
-
     <section class="hero" id="home">
+        <nav class="navbar">
+            <div class="brand">
+                <span class="brand-mark"></span>
+                ABTECH
+            </div>
+
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#team">Team</a>
+                <a href="#about" class="about-button">DISCOVER</a>
+            </div>
+        </nav>
 
         <div class="hero-content">
+            <div class="eyebrow">
+                WELCOME TO ABTECH
+            </div>
 
             <h1>
                 Welcome to <span>ABTECH</span>
             </h1>
 
-            <p>
+            <p class="hero-description">
                 Welcome to our website. ABTECH is a technology-focused
                 company that believes in innovation, creativity and
                 building useful solutions through modern technology.
             </p>
 
-            <a href="#about" class="hero-button">
-                Discover ABTECH
-            </a>
-
+            <div class="hero-line"></div>
         </div>
 
+        <div class="scroll-indicator">
+            <span class="scroll-line"></span>
+            SCROLL TO EXPLORE
+        </div>
     </section>
-
 
     <!-- ABOUT US -->
+    <section class="content-section" id="about">
+        <div class="section-header">
+            <div>
+                <div class="section-label">Who We Are</div>
+                <h2 class="section-title">About Us</h2>
+            </div>
+        </div>
 
-    <section class="about" id="about">
-
-        <h2 class="section-title">
-            About Us
-        </h2>
-
-        <div class="line"></div>
-
-        <p class="about-text">
-
-            ABTECH is an innovative technology company focused on
-            creating simple, practical and modern technology solutions.
-            Our vision is to encourage creativity, technical learning
-            and innovation while developing projects that can make a
-            positive difference.
-
-            <br><br>
-
-            We believe that great technology starts with great ideas.
-            Our team combines knowledge, creativity and teamwork to
-            explore new concepts and turn ideas into useful projects.
-            ABTECH aims to continuously learn, improve and grow with
-            the changing world of technology.
-
-        </p>
-
+        <div class="glass-card" style="max-width: 900px; margin: 0 auto;">
+            <p style="font-size: 17px; line-height: 1.8;">
+                ABTECH is an innovative technology company focused on
+                creating simple, practical and modern technology solutions.
+                Our vision is to encourage creativity, technical learning
+                and innovation while developing projects that can make a
+                positive difference.
+                <br><br>
+                We believe that great technology starts with great ideas.
+                Our team combines knowledge, creativity and teamwork to
+                explore new concepts and turn ideas into useful projects.
+                ABTECH aims to continuously learn, improve and grow with
+                the changing world of technology.
+            </p>
+        </div>
     </section>
-
 
     <!-- TEAM -->
-
-    <section class="team" id="team">
-
-        <h2 class="section-title">
-            Our Team
-        </h2>
-
-        <div class="line"></div>
-
-        <div class="team-container">
-
-
-            <!-- CEO -->
-
-            <div class="employee">
-
-                <div class="employee-icon">
-                    AB
-                </div>
-
-                <h3>
-                    Aadesh Bhopale
-                </h3>
-
-                <div class="role">
-                    CEO
-                </div>
-
-                <p>
-                    Leading ABTECH with vision, creativity and
-                    dedication toward innovation and growth.
-                </p>
-
-                <a
-                    href="https://in.linkedin.com/in/aadesh-bhopale-23aa63340"
-                    class="linkedin-button"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    LinkedIn
-                </a>
-
+    <section class="content-section" id="team">
+        <div class="section-header">
+            <div>
+                <div class="section-label">The People Behind ABTECH</div>
+                <h2 class="section-title">Our Team</h2>
             </div>
+            <div class="section-count" style="color: var(--text-muted); font-size: 12px; letter-spacing: 2.5px; font-weight: 700;">
+                03 MEMBERS
+            </div>
+        </div>
 
+        <div class="team-grid">
+            <!-- CEO -->
+            <div class="employee-card">
+                <div class="employee-icon">AB</div>
+                <h3>Aadesh Bhopale</h3>
+                <div class="role">CEO</div>
+                <p>Leading ABTECH with vision, creativity and dedication toward innovation and growth.</p>
+                <a href="https://in.linkedin.com/in/aadesh-bhopale-23aa63340" class="linkedin-button" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
 
             <!-- ENGINEER -->
-
-            <div class="employee">
-
-                <div class="employee-icon">
-                    HR
-                </div>
-
-                <h3>
-                    Er. Harsh Rathod
-                </h3>
-
-                <div class="role">
-                    Engineer
-                </div>
-
-                <p>
-                    Supporting technical development and engineering
-                    solutions with a focus on practical innovation.
-                </p>
-
+            <div class="employee-card">
+                <div class="employee-icon">HR</div>
+                <h3>Er. Harsh Rathod</h3>
+                <div class="role">Engineer</div>
+                <p>Supporting technical development and engineering solutions with a focus on practical innovation.</p>
             </div>
-
 
             <!-- TECHNOLOGY -->
-
-            <div class="employee">
-
-                <div class="employee-icon">
-                    OV
-                </div>
-
-                <h3>
-                    Dr. Omkar Vidhate
-                </h3>
-
-                <div class="role">
-                    Technology & Research
-                </div>
-
-                <p>
-                    Contributing knowledge, research and technical
-                    ideas to help develop innovative projects.
-                </p>
-
-                <a
-                    href="https://in.linkedin.com/in/omkar-vidhate-83b446384"
-                    class="linkedin-button"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    LinkedIn
-                </a>
-
+            <div class="employee-card">
+                <div class="employee-icon">OV</div>
+                <h3>Dr. Omkar Vidhate</h3>
+                <div class="role">Technology & Research</div>
+                <p>Contributing knowledge, research and technical ideas to help develop innovative projects.</p>
+                <a href="https://in.linkedin.com/in/omkar-vidhate-83b446384" class="linkedin-button" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             </div>
-
-
         </div>
-
     </section>
-
 
     <!-- COMPANY VALUES -->
-
-    <section class="values">
-
-        <h2 class="section-title">
-            What We Believe
-        </h2>
-
-        <div class="line"></div>
-
-        <div class="value-container">
-
-
-            <div class="value">
-
-                <h3>
-                    Innovation
-                </h3>
-
-                <p>
-                    We explore new ideas and technologies to create
-                    better solutions.
-                </p>
-
+    <section class="content-section">
+        <div class="section-header">
+            <div>
+                <div class="section-label">Core Principles</div>
+                <h2 class="section-title">What We Believe</h2>
             </div>
-
-
-            <div class="value">
-
-                <h3>
-                    Teamwork
-                </h3>
-
-                <p>
-                    We believe collaboration and shared knowledge
-                    lead to better results.
-                </p>
-
-            </div>
-
-
-            <div class="value">
-
-                <h3>
-                    Excellence
-                </h3>
-
-                <p>
-                    We continuously learn and improve our work to
-                    achieve high-quality results.
-                </p>
-
-            </div>
-
-
         </div>
 
+        <div class="card-grid">
+            <div class="glass-card">
+                <div class="card-icon" style="background: linear-gradient(135deg, var(--color-blue), var(--color-emerald));">I</div>
+                <div>
+                    <h3>Innovation</h3>
+                    <p>We explore new ideas and technologies to create better solutions.</p>
+                </div>
+            </div>
+
+            <div class="glass-card">
+                <div class="glass-card-inner">
+                    <div class="card-icon" style="background: linear-gradient(135deg, var(--color-violet), var(--color-magenta));">T</div>
+                    <div>
+                        <h3>Teamwork</h3>
+                        <p>We believe collaboration and shared knowledge lead to better results.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card" style="grid-column: auto / span 2;">
+                <div class="card-icon" style="background: linear-gradient(135deg, var(--color-amber), var(--color-emerald));">E</div>
+                <div>
+                    <h3>Excellence</h3>
+                    <p>We continuously learn and improve our work to achieve high-quality results.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-
     <!-- FOOTER -->
-
     <footer>
-
-        <strong>ABTECH</strong>
-        &nbsp; | &nbsp;
-        Technology • Innovation • Future
-
-        <br><br>
-
-        ABTECH &copy; 2026 - All Rights Reserved
-
+        <div>
+            <strong>ABTECH</strong> &nbsp;|&nbsp; Technology • Innovation • Future
+        </div>
+        <div>
+            ABTECH &copy; 2026 - All Rights Reserved
+        </div>
     </footer>
-
 
 </body>
 </html>
